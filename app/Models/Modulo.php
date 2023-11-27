@@ -20,6 +20,8 @@ class Modulo extends Model
         'curso_id',
     ];
 
+    
+
     // Relaciones (ejemplos, ajusta según tus necesidades):
     public function user()
     {
@@ -28,7 +30,7 @@ class Modulo extends Model
 
     public function especialidad()
     {
-        return $this->belongsTo(Especialidad::class, 'especialidad_id');
+        return $this->belongsTo(Especialidad::class);
     }
 
     public function curso()

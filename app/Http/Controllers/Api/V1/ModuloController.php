@@ -36,9 +36,9 @@ class ModuloController extends Controller
         return new ModuloResource($modulo);
     }
 
-    public function show($id)
+    public function show(Modulo $modulo)
     {
-        $modulo = Modulo::findOrFail($id);
+        // $modulo = Modulo::findOrFail($id);
         return new ModuloResource($modulo);
     }
 
@@ -63,9 +63,9 @@ class ModuloController extends Controller
         return new ModuloResource($modulo);
     }
 
-    public function destroy($id)
+    public function destroy(Modulo $modulo )
     {
-        $modulo = Modulo::findOrFail($id);
+        // $modulo = Modulo::findOrFail($modulo);
         $modulo->delete();
 
         return response()->json(null, 204);

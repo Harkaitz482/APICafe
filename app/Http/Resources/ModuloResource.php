@@ -21,9 +21,11 @@ class ModuloResource extends JsonResource
             'horas_semanales' => $this->horas_semanales,
             'horas_totales' => $this->horas_totales,
             'user_id' => $this->user_id,
+            'especialidad' => new EspecialidadResource($this->especialidad), // Asumiendo que hay una relación "especialidad"
+
             // Agrega otros campos según sea necesario
-            'created_at' => $this->created_at,
-            'updated_at' => $this->updated_at,
+            // 'created_at' => $this->created_at,
+            // 'updated_at' => $this->updated_at,
         ];
     }
 }

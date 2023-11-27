@@ -21,11 +21,30 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::middleware('auth:sanctum')->group(function () {
-    Route::resource('modulos', ModuloController::class);
+    Route::apiResource('modulos', ModuloController::class);
+
+    Route::prefix('V1')->group(function () {
+        Route::get('/modulos/{modulo}', [ModuloController::class, 'show'])
+            ->missing(function () {
+                return response()->json(['error' => 'El módulo no existe'], 404);
+            });
+
+        Route::post('/modulos/update/{modulo}', [ModuloController::class, 'update'])
+            ->missing(function () {
+                return response()->json(['error' => 'El módulo no existe'], 404);
+            });
+
+        Route::delete('/modulos/destroy/{modulo}', [ModuloController::class, 'destroy'])
+            ->missing(function () {
+                return response()->json(['error' => 'El módulo no existe'], 404);
+            });
+
+        Route::resource('/especialidades', EspecialidadController::class);
     });
+});
 
 
-    Route::controller(LoginRegisterController::class)->group(function() {
-        Route::post('/register', 'register');
-        Route::post('/login', 'login');
-    });
+Route::controller(LoginRegisterController::class)->group(function () {
+    Route::post('/register', 'register');
+    Route::post('/login', 'login');
+});
