@@ -16,7 +16,7 @@ class Modulo extends Model
         'horas_semanales',
         'horas_totales',
         'user_id',
-        'especialidad_id',
+        'especialidades_id',
         'curso_id',
     ];
 
@@ -30,7 +30,8 @@ class Modulo extends Model
 
     public function especialidad()
     {
-        return $this->belongsTo(Especialidad::class);
+        return $this->belongsTo(Especialidad::class, 'especialidad_id');
+
     }
 
     public function curso()

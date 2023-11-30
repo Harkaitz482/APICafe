@@ -10,7 +10,7 @@ class Especialidad extends Model
     use HasFactory;
 
     protected $fillable = [
-        'id',
+        
         'nombre',
         
 
