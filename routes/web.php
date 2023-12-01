@@ -16,3 +16,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+
+Route::get('form', [App\Http\Controllers\Api\V1\ModuloController.php::class, 'index']);
+
+Route::post('login', [App\Http\Controllers\Auth\LoginRegisterController::class, 'login']);
+
