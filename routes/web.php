@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\Api\V1\ModuloController;
 use Illuminate\Support\Facades\Route;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -17,6 +19,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/index',function(){
-    return view('index.html');
-});
+
+
+
+
+Route::get('form', [App\Http\Controllers\Api\V1\ModuloController::class, 'index']);
+
+Route::post('login', [App\Http\Controllers\Auth\LoginRegisterController::class, 'login']);
+
