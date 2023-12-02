@@ -23,7 +23,7 @@ Route::get('/', function () {
 
 
 
-Route::get('form', [App\Http\Controllers\Api\V1\ModuloController::class, 'index']);
+Route::get('/form', [App\Http\Controllers\Api\V1\ModuloController::class, 'index']);
 
-Route::post('login', [App\Http\Controllers\Auth\LoginRegisterController::class, 'login']);
+Route::post('/login', [App\Http\Controllers\Auth\LoginRegisterController::class, 'login']);
 

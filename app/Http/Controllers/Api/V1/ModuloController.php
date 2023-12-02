@@ -7,13 +7,20 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\ModuloResource;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\File;
 
 class ModuloController extends Controller
 {
     public function index()
-    {
+    {   
+        // return public_path('form');
+
+       
+
+        return File::get(public_path('form.html'));
         $modulos = Modulo::all();
         return ModuloResource::collection($modulos);
+        
     }
 
     public function store(Request $request)
