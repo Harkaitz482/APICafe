@@ -4,6 +4,9 @@ use App\Http\Controllers\Api\V1\ModuloController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\LoginRegisterController;
+use App\Http\Controllers\EspecialidadController;
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -24,22 +27,27 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::apiResource('modulos', ModuloController::class);
 
     Route::prefix('V1')->group(function () {
-        Route::get('/modulos/{modulo}', [ModuloController::class, 'show'])
-            ->missing(function () {
-                return response()->json(['error' => 'El módulo no existe'], 404);
-            });
 
-        Route::post('/modulos/update/{modulo}', [ModuloController::class, 'update'])
-            ->missing(function () {
-                return response()->json(['error' => 'El módulo no existe'], 404);
-            });
+        Route::apiResource('modulos', ModuloController::class)->missing (function () {
+            return response()->json(['error' => 'El módulo no existe'], 404);
+        });
 
-        Route::delete('/modulos/destroy/{modulo}', [ModuloController::class, 'destroy'])
-            ->missing(function () {
-                return response()->json(['error' => 'El módulo no existe'], 404);
-            });
+        // Route::get('/modulos/{modulo}', [ModuloController::class, 'show'])
+        //     ->missing(function () {
+        //         return response()->json(['error' => 'El módulo no existe'], 404);
+        //     });
 
-        Route::resource('/especialidades', EspecialidadController::class);
+        // Route::post('/modulos/update/{modulo}', [ModuloController::class, 'update'])
+        //     ->missing(function () {
+        //         return response()->json(['error' => 'El módulo no existe'], 404);
+        //     });
+
+        // Route::delete('/modulos/destroy/{modulo}', [ModuloController::class, 'destroy'])
+        //     ->missing(function () {
+        //         return response()->json(['error' => 'El módulo no existe'], 404);
+        //     });
+
+        Route::get('/especialidades/{especialidad}', [EspecialidadController::class,'show']);
     });
 });
 

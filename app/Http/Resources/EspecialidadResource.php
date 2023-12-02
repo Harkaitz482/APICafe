@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class EspecialidadResource extends JsonResource
@@ -11,12 +12,15 @@ class EspecialidadResource extends JsonResource
      *
      * @return array<string, mixed>
      */
-    public function toArray($request)
+    public function toArray(Request $request): array
     {
+        //  dd($this);
         return [
             'id' => $this->id,
             'nombre' => $this->nombre,
-            // Otros campos de la especialidad según sea necesario
+        
         ];
+    
+
     }
 }

@@ -25,6 +25,7 @@ class ModuloController extends Controller
             'horas_semanales' => 'required|integer',
             'horas_totales' => 'required|integer',
             'user_id' => 'required|integer',
+            'especialidad_id'=>'required|integer',
         ]);
 
         if ($validator->fails()) {
@@ -39,6 +40,7 @@ class ModuloController extends Controller
     public function show(Modulo $modulo)
     {
         // $modulo = Modulo::findOrFail($id);
+        // dd($modulo);
         return new ModuloResource($modulo);
     }
 
@@ -51,6 +53,7 @@ class ModuloController extends Controller
             'horas_semanales' => 'required|integer',
             'horas_totales' => 'required|integer',
             'user_id' => 'required|integer',
+            'especialidad_id'=>'required|integer',
         ]);
 
         if ($validator->fails()) {
