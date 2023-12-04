@@ -55,7 +55,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const selectModulo = document.querySelector('#formulario select[aria-label="Default select example"]');
   
   // URL de la API que proporciona la información de los módulos
-  const token = '12|4xId3JlN9TAMwvxI5QIVb8rPw50wDFgMFA1LFPkY6db4ba68';
+  const token = '1|UAGUyuR48a4YRRA2u7XSPwMs9Urd2EnOVx5ObZGt0a194e62';
   const apiUrl = 'http://horariocafe.test/api/modulos';
   
   // Realizar la solicitud a la API
