@@ -33,6 +33,7 @@ class ModuloController extends Controller
             'horas_totales' => 'required|integer',
             'user_id' => 'required|integer',
             'especialidad_id'=>'required|integer',
+            'curso_id'=>'required|integer',
         ]);
 
         if ($validator->fails()) {
@@ -61,6 +62,7 @@ class ModuloController extends Controller
             'horas_totales' => 'required|integer',
             'user_id' => 'required|integer',
             'especialidad_id'=>'required|integer',
+            'curso_id'=>'required|integer',
         ]);
 
         if ($validator->fails()) {
