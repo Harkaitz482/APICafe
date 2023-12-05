@@ -109,4 +109,8 @@ class LoginRegisterController extends Controller
             'message' => 'User is logged out successfully'
             ], 200);
     }    
+
+    
+
+
 }
