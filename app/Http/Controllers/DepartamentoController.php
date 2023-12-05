@@ -18,7 +18,7 @@ class DepartamentoController extends Controller
     public function index()
     {
         $departamentos = Departamento::all();
-        return response()->json(DepartamentoResource::collection($departamentos));
+        return Departamento::collection($departamentos);
     }
 
     /**
@@ -29,7 +29,7 @@ class DepartamentoController extends Controller
      */
     public function show(Departamento $departamento)
     {
-        return response()->json(new DepartamentoResource($departamento));
+        return new DepartamentoResource($departamento);
     }
 
     /**
