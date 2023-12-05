@@ -59,7 +59,7 @@ const selectModulo = document.querySelector(
 
 // URL de la API que proporciona la información de los módulos
 const token = "1|UAGUyuR48a4YRRA2u7XSPwMs9Urd2EnOVx5ObZGt0a194e62";
-const apiUrl = "http://horariocafe.test/api/modulos";
+const apiUrl = "http://apicafe.test/api/modulos";
 
 // Realizar la solicitud a la API
 fetch(apiUrl, {
@@ -133,20 +133,3 @@ fetch(apiUrl, {
   });
   
 
-// LLAMADAS A LA API \
-
-// const inputTurno = document.querySelector('#formulario input[aria-label="M/T"]');
-// const inputCurso = document.querySelector('#formulario input[aria-label="Curso y ciclo"]');
-
-// const inputHoras = document.querySelector('#formulario input[aria-label="Horas"]');
-// const inputAula = document.querySelector('#formulario input[aria-label="Aula/Taller"]');
-
-// Llenar los campos del formulario con los datos del módulo
-// inputTurno.value = datosModulo.turno;
-// inputCurso.value = datosModulo.curso;
-
-// Puedes establecer el valor seleccionado en el select de módulos según el dato proporcionado por la API
-
-// inputHoras.value = datosModulo.horas;
-// selectDistancia.value = datosModulo.distancia_semanal;
-// inputAula.value = datosModulo.aula;
