@@ -36,6 +36,6 @@ class Modulo extends Model
 
     public function curso()
     {
-        return $this->belongsTo(Curso::class, 'curso_id');
+        return $this->belongsTo(Curso::class);
     }
 }
