@@ -1,5 +1,5 @@
-import "./bootstrap";
-document.addEventListener("DOMContentLoaded", function () {
+ import "./bootstrap";
+ document.addEventListener("DOMContentLoaded", function () {
     const calcularBtn = document.getElementById("calcular");
     const horasTotalesElement = document.getElementById("horastotales");
 
