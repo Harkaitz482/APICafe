@@ -18,6 +18,7 @@ class Modulo extends Model
         'user_id',
         'especialidad_id',
         'curso_id',
+        'aula_id',
     ];
 
     
@@ -37,5 +38,10 @@ class Modulo extends Model
     public function curso()
     {
         return $this->belongsTo(Curso::class);
+    }
+
+    public function aula()
+    {
+        return $this->belongsToMany(Aula::class);
     }
 }

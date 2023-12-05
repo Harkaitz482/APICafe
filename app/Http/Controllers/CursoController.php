@@ -26,7 +26,7 @@ class CursoController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Especialidad  $especialidad
+     * @param  \App\Models\Curso  $especialidad
      * @return \Illuminate\Http\Response
      */
     public function show(Curso $curso)
@@ -49,13 +49,7 @@ class CursoController extends Controller
             ->setStatusCode(201); // Código de estado 201 (Created)
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \App\Http\Requests\EspecialidadRequest  $request
-     * @param  \App\Models\Especialidad  $especialidad
-     * @return \Illuminate\Http\Response
-     */
+    
     public function update(CursoRequest $request, Curso $curso)
     {
         $curso->update($request->all());
