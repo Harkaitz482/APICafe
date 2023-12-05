@@ -1,5 +1,4 @@
- import "./bootstrap";
- document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", function () {
     const calcularBtn = document.getElementById("calcular");
     const horasTotalesElement = document.getElementById("horastotales");
 
@@ -56,10 +55,60 @@
 const selectModulo = document.querySelector(
     '#formulario select[aria-label="Default select example"]'
 );
+// 
 
-// URL de la API que proporciona la información de los módulos
-const token = "1|UAGUyuR48a4YRRA2u7XSPwMs9Urd2EnOVx5ObZGt0a194e62";
-const apiUrl = "http://apicafe.test/api/modulos";
+let token
+
+
+    document
+    .getElementById("loginForm")
+    .addEventListener("submit", function (event) {
+        event.preventDefault();
+
+        const email = document.getElementById("email").value;
+        const password = document.getElementById("password").value; // Corregido
+
+        console.log(email);
+        console.log(password);
+
+        const formData = {
+            email: email,
+            password: password,
+        };
+
+        fetch("http://apicafe.test/api/login", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(formData),
+        })
+            .then((response) => {
+                if (!response.ok) {
+                    throw new Error("Credenciales inválidas");
+                }
+                return response.json();
+            })
+            .then((data) => {
+                token = data.data.token;
+                localStorage.setItem("token", token);
+
+                // Redireccionar si el inicio de sesión es exitoso
+                window.location.href = "form.html";
+            })
+            .catch((error) => {
+                console.error("Error:", error.message);
+                // Manejar errores, mostrar mensajes, etc.
+            });
+    });
+
+
+
+
+
+    // URL de la API que proporciona la información de los módulos
+
+const apiUrl = "http://apicafe.test/api/V1/modulos";
 
 // Realizar la solicitud a la API
 fetch(apiUrl, {
@@ -89,47 +138,3 @@ fetch(apiUrl, {
     .catch((error) => {
         console.error("Error al obtener datos de la API:", error);
     });
-
-
-
-
-    document.getElementById('loginForm').addEventListener('submit', function(event) {
-      event.preventDefault();
-  
-      const email = document.getElementById('email').value;
-      const password = document.getElementById('password').value;
-      console.log(email);
-      console.log(password);
-      
-      const formData = {
-          email: email,
-          password: password
-      };
-  
-      fetch('http://tu-api.com/login', {
-          method: 'POST',
-          headers: {
-              'Content-Type': 'application/json'
-          },
-          body: JSON.stringify(formData)
-      })
-      .then(response => {
-          if (!response.ok) {
-              throw new Error('Credenciales inválidas');
-          }
-          return response.json();
-      })
-      .then(data => {
-          const token = data.access_token;
-          localStorage.setItem('token', token);
-  
-          // Redireccionar si el inicio de sesión es exitoso
-          window.location.href = 'form.html';
-      })
-      .catch(error => {
-          console.error('Error:', error.message);
-          // Manejar errores, mostrar mensajes, etc.
-      });
-  });
-  
-
