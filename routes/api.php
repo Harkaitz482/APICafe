@@ -24,8 +24,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::middleware('auth:sanctum')->group(function () {
-    Route::apiResource('modulos', ModuloController::class);
-
+    
     Route::prefix('V1')->group(function () {
 
         Route::apiResource('modulos', ModuloController::class)->missing (function () {
