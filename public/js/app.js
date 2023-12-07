@@ -60,7 +60,7 @@ const selectModulo = document.querySelector(
 let token
 
 
-    document
+document
     .getElementById("loginForm")
     .addEventListener("submit", function (event) {
         event.preventDefault();
@@ -106,7 +106,7 @@ let token
 
 
 
-    // URL de la API que proporciona la información de los módulos
+// URL de la API que proporciona la información de los módulos
 
 const apiUrl = "http://apicafe.test/api/V1/modulos";
 
@@ -121,7 +121,7 @@ fetch(apiUrl, {
     .then((response) => response.json())
     .then((result) => {
         const data = result.data; // Acceder al arreglo 'data' en el resultado
-
+        console.log(data)
         if (Array.isArray(data) && data.length > 0) {
             data.forEach((modulo) => {
                 const option = document.createElement("option");

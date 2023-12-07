@@ -17,10 +17,9 @@ return new class extends Migration
             $table->string('nombre');
             $table->integer('horas_semanales');
             $table->integer('horas_totales');
-            $table->foreignId('user_id')->constrained();
             $table->foreignId('especialidad_id')->constrained();
             $table->foreignId('curso_id')->constrained();
-            // $table->timestamps();
+            $table->timestamps();
         });
     }
 
