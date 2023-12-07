@@ -3,7 +3,15 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+
+use App\Models\Curso;
+use App\Models\Departamento;
+use App\Models\Especialidad;
+use App\Models\Modulo;
+use App\Models\User;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
+
 
 class DatabaseSeeder extends Seeder
 {
@@ -12,11 +20,13 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // \App\Models\User::factory(10)->create();
+        DB::delete('delete from apicafe');
+        Curso::factory()->count(5)->create();
+        User::factory()->count(5)->create();
+        Departamento::factory()->count(5)->create();
+        Especialidad::factory()->count(5)->create();
+        Modulo::factory()->count(5)->create();
 
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
+
     }
 }
