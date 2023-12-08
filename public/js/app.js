@@ -55,61 +55,29 @@ document.addEventListener("DOMContentLoaded", function () {
 const selectModulo = document.querySelector(
     '#formulario select[aria-label="Default select example"]'
 );
-// 
+//
+function obtenerToken() {
+    // Verificar si el localStorage es compatible con el navegador
+    if (typeof Storage !== "undefined") {
+        // Obtener el token almacenado en el localStorage
+        const token = localStorage.getItem("token");
 
-let token
+        // Verificar si el token existe
+        if (token) {
+            return token; // Devolver el valor del token
+        } else {
+            return null; // Devolver null si no se encuentra el token
+        }
+    }
+}
 
+// Ejemplo de uso:
+const token = obtenerToken();
 
-document
-    .getElementById("loginForm")
-    .addEventListener("submit", function (event) {
-        event.preventDefault();
-
-        const email = document.getElementById("email").value;
-        const password = document.getElementById("password").value; // Corregido
-
-        console.log(email);
-        console.log(password);
-
-        const formData = {
-            email: email,
-            password: password,
-        };
-
-        fetch("http://apicafe.test/api/login", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify(formData),
-        })
-            .then((response) => {
-                if (!response.ok) {
-                    throw new Error("Credenciales inválidas");
-                }
-                return response.json();
-            })
-            .then((data) => {
-                token = data.data.token;
-                localStorage.setItem("token", token);
-
-                // Redireccionar si el inicio de sesión es exitoso
-                window.location.href = "form.html";
-            })
-            .catch((error) => {
-                console.error("Error:", error.message);
-                // Manejar errores, mostrar mensajes, etc.
-            });
-    });
-
-
-
-
+// Verificar si el token existe
 
 // URL de la API que proporciona la información de los módulos
-
 const apiUrl = "http://apicafe.test/api/V1/modulos";
-
 // Realizar la solicitud a la API
 fetch(apiUrl, {
     method: "GET",
@@ -120,8 +88,9 @@ fetch(apiUrl, {
 })
     .then((response) => response.json())
     .then((result) => {
-        const data = result.data; // Acceder al arreglo 'data' en el resultado
-        console.log(data)
+        const data = result.data;
+        // Acceder al arreglo 'data' en el resultado
+
         if (Array.isArray(data) && data.length > 0) {
             data.forEach((modulo) => {
                 const option = document.createElement("option");
@@ -138,3 +107,4 @@ fetch(apiUrl, {
     .catch((error) => {
         console.error("Error al obtener datos de la API:", error);
     });
+console.log(token);
