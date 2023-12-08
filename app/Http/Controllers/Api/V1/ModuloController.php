@@ -17,7 +17,7 @@ class ModuloController extends Controller
 
        
 
-        return File::get(public_path('form.html'));
+        // return File::get(public_path('form.html'));
         $modulos = Modulo::all();
         return ModuloResource::collection($modulos);
         
