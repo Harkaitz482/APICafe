@@ -10,7 +10,7 @@ class Modulo extends Model
     use HasFactory;
 
     protected $fillable = [
-        
+
         'codigo',
         'nombre',
         'horas_semanales',
@@ -18,9 +18,10 @@ class Modulo extends Model
         'user_id',
         'especialidad_id',
         'curso_id',
+        'aula_id',
     ];
 
-    
+
 
     // Relaciones (ejemplos, ajusta según tus necesidades):
     public function user()
@@ -30,12 +31,16 @@ class Modulo extends Model
 
     public function especialidad()
     {
-        return $this->belongsTo(Especialidad::class);
-
+        return $this->belongsTo(Especialidad::class, 'especialidad_id');
     }
 
     public function curso()
     {
-        return $this->belongsTo(Curso::class);
+        return $this->belongsTo(Curso::class, 'curso_id');
+    }
+
+    public function aulas()
+    {
+        return $this->belongsToMany(Aula::class, 'modulo_aula', 'modulo_id', 'aula_id');
     }
 }

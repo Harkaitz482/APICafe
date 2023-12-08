@@ -30,6 +30,7 @@ class ModuloResource extends JsonResource
             // 'especialidad' =>  Modulo::find($this->id)->especialidad()->get(), 
             'especialidad'=> new EspecialidadResource(($this->especialidad)), // Asumiendo que hay una relación "especialidad"
             'curso'=> new CursoResource(($this->curso)), 
+            'aula'=> new AulaResource(($this->aula)), 
              
             // Agrega otros campos según sea necesario
             // 'created_at' => $this->created_at,
