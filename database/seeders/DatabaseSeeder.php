@@ -20,7 +20,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        DB::delete('delete from apicafe');
+        // DB::delete('delete from apicafe');
         Curso::factory()->count(5)->create();
         User::factory()->count(5)->create();
         Departamento::factory()->count(5)->create();

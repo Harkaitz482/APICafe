@@ -25,7 +25,7 @@ class ModuloFactory extends Factory
             'user_id' => \App\Models\User::factory(),
             'especialidad_id' => \App\Models\Especialidad::factory(),
             'curso_id' => \App\Models\Curso::factory(),
-            'aula_id' => \App\Models\Aula::factory(),
+            // 'aula_id' => \App\Models\Aula::factory(),
         ];
     }
 }
