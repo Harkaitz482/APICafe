@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('password');
             $table->rememberToken();
             $table->foreignId('departamento_id')->constrained();
-            $table->foreignId('especialidad_id')->constrained();
+            $table->foreignId('especialidads_id')->constrained();
             $table->timestamps();
         });
     }
