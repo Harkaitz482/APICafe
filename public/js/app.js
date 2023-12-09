@@ -143,6 +143,7 @@ fetch(apiUrl, {
                 option.value = modulo.id;
                 option.textContent = modulo.codigo;
                 selectModulo.appendChild(option);
+                localStorage.setItem("modulo", modulo.id);
             });
         } else {
             console.error(
@@ -195,14 +196,44 @@ document.getElementById("logout").addEventListener("click", function () {
 
 
 
+function obtenerModulo() {
+    // Verificar si el localStorage es compatible con el navegador
+    if (typeof Storage !== "undefined") {
+        // Obtener el token almacenado en el localStorage
+        const moduloid = localStorage.getItem("modulo");
+
+        // Verificar si el token existe
+        if (moduloid) {
+            return moduloid; // Devolver el valor del token
+        } else {
+            return null; // Devolver null si no se encuentra el token
+        }
+    }
+}
+
+
+
+
+// Ejemplo de uso:
+const moduloid = obtenerModulo();
+
+
+
+
+
+
 
 // Obtener referencia al select y al contenedor de horas
 
-const horasContainer = document.getElementById("horas");
+
 
 // Función para obtener y mostrar las horas correspondientes al módulo seleccionado
-function mostrarHoras() {
-    const apiUrlHoras = `http://apicafe.test/api/V1/modulos/1`;
+const nombreInput = document.getElementById("nombre");
+const horasInput = document.getElementById("horas");
+
+function mostrarHoras(moduloId) {
+    const apiUrlHoras = `http://apicafe.test/api/V1/modulos/${moduloId}`;
+    console.log(moduloId);
 
     fetch(apiUrlHoras, {
         method: "GET",
@@ -211,38 +242,27 @@ function mostrarHoras() {
             "Content-Type": "application/json",
         },
     })
-        .then((response) => response.json())
-        .then((result) => {
-            const horas = result.data;
-            console.log(horas)
+    .then((response) => response.json())
+    .then((result) => {
+        const data = result.data;
+        console.log(data);
 
-            // Limpiar contenido anterior en el contenedor
-            horasContainer.innerHTML = "";
-
-            if (Array.isArray(horas) && horas.length > 0) {
-                horas.forEach((hora) => {
-                    // Crear elementos para mostrar las horas correspondientes
-                    const horaElement = document.createElement("p");
-                    horaElement.textContent = modulo.hora;
-
-                    // Agregar la hora al contenedor
-                    horasContainer.appendChild(horaElement);
-                });
-            } else {
-                console.error(
-                    "El arreglo 'horas' está vacío o no contiene elementos"
-                );
-            }
-        })
-        .catch((error) => {
-            console.error("Error al obtener datos de la API:", error);
-        });
+        if (data && data.nombre && data.horas_semanales) {
+            // Establecer el valor del input del nombre y las horas_semanales
+            nombreInput.value = data.nombre;
+            console.log()
+            horasInput.value = data.horas_semanales;
+        } else {
+            console.error("No se encontraron datos completos para este módulo");
+        }
+    })
+    .catch((error) => {
+        console.error("Error al obtener datos de la API:", error);
+    });
 }
 
-// Event listener para detectar cambios en la selección del módulo
 selectModulo.addEventListener("change", function (event) {
     const moduloIdSeleccionado = event.target.value;
-
-    // Llamar a la función para mostrar las horas del módulo seleccionado
     mostrarHoras(moduloIdSeleccionado);
 });
+
