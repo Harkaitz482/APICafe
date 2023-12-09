@@ -13,7 +13,7 @@ class CreateEspecialidadsTable extends Migration
      */
     public function up()
     {
-        Schema::create('especialidad', function (Blueprint $table) {
+        Schema::create('especialidads', function (Blueprint $table) {
             $table->id();
             $table->string('nombre'); // Ajusta según tus necesidades
             // Agrega otras columnas según sea necesario
@@ -28,6 +28,6 @@ class CreateEspecialidadsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('especialidad');
+        Schema::dropIfExists('especialidads');
     }
 }
