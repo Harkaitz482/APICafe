@@ -25,9 +25,11 @@ document
                 return response.json();
             })
             .then((data) => {
+                console.log(data)
                 let token = data.data.token;
                 localStorage.setItem("token", token);
-
+                let name = data.data.user.name;
+                localStorage.setItem("name", name);
                 // Redireccionar si el inicio de sesión es exitoso
                 window.location.href = "form.html";
             })
