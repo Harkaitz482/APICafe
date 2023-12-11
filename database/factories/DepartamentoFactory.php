@@ -23,6 +23,7 @@ class DepartamentoFactory extends Factory
     {
         return [
             'nombre' => $this->faker->word,
+            'puesto' => $this->faker->randomElement(['Jefe de departamento', 'Profesor']),
             // Add other columns and their respective definitions as needed
         ];
     }
