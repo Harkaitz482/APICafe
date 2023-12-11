@@ -230,6 +230,7 @@ const moduloid = obtenerModulo();
 // Función para obtener y mostrar las horas correspondientes al módulo seleccionado
 const nombreInput = document.getElementById("nombre");
 const horasInput = document.getElementById("horas");
+const turnoInput = document.getElementById("turno")
 
 function mostrarHoras(moduloId) {
     const apiUrlHoras = `http://apicafe.test/api/V1/modulos/${moduloId}`;
@@ -246,14 +247,20 @@ function mostrarHoras(moduloId) {
     .then((result) => {
         const data = result.data;
         console.log(data);
-
+        
         if (data && data.nombre && data.horas_semanales) {
             // Establecer el valor del input del nombre y las horas_semanales
             nombreInput.value = data.nombre;
-            console.log()
+            
             horasInput.value = data.horas_semanales;
         } else {
             console.error("No se encontraron datos completos para este módulo");
+        }
+        const dataCurso = result.data.curso
+        console.log(dataCurso)
+
+        if(data.curso && data.curso.turno){
+            turnoInput.value = data.curso.turno;
         }
     })
     .catch((error) => {
