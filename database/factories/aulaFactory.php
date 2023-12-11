@@ -24,6 +24,9 @@ class AulaFactory extends Factory
         return [
             'numero' => $this->faker->unique()->numberBetween(1, 100),
             'disponibilidad' => $this->faker->randomElement(['available', 'occupied']),
+            'horasTarde' => $this->faker->numberBetween(5, 10),
+            'horasMañana' => $this->faker->numberBetween(5, 10),
+
             // Add other columns and their respective definitions as needed
         ];
     }

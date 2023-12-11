@@ -24,6 +24,9 @@ class AulaRequest extends FormRequest
         return [
             'numero'=> 'required|string|max:255',
            'disponibilidad'=> 'required|string|max:255',
+           'horasTarde'=>'required|integer|max:255',
+           'horasMañana'=>'required|integer|max:255'
+
         ];
     }
 }

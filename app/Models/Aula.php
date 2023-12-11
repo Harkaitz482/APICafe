@@ -13,6 +13,8 @@ class Aula extends Model
         'id',
         'numero',
         'disponibilidad',
+        'horasMañana',
+        'horasTarde',
         
         
 

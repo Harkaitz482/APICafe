@@ -15,6 +15,7 @@ class Modulo extends Model
         'nombre',
         'horas_semanales',
         'horas_totales',
+        'CargaHoraria',
         'user_id',
         'especialidad_id',
         'curso_id',

@@ -22,6 +22,7 @@ class ModuloFactory extends Factory
             'nombre' => $this->faker->sentence,
             'horas_semanales' => $this->faker->numberBetween(1, 20),
             'horas_totales' => $this->faker->numberBetween(20, 100),
+            'CargaHoraria' => $this->faker->numberBetween(1, 20),
             'user_id' => \App\Models\User::factory(),
             'especialidad_id' => \App\Models\Especialidad::factory(),
             'curso_id' => \App\Models\Curso::factory(),

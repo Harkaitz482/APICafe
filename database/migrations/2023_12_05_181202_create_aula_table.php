@@ -15,6 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('numero');
             $table->string('disponibilidad');
+            $table->integer('horasMañana');
+            $table->integer('HorasTarde');
             $table->timestamps();
         });
     }

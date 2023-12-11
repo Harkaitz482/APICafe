@@ -18,6 +18,9 @@ class AulaResource extends JsonResource
             'id' => $this->id,
             'numero' => $this->numero,
             'disponibilidad'=>$this->disponibilidad,
+            'horasMañana'=>$this->horasMañanas,
+            'horasTarde'=>$this->horasTarde,
+
         
         ];
     }
