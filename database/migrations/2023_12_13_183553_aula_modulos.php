@@ -11,16 +11,18 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('aula_modulo', function (Blueprint $table) {
+        Schema::create('modulo_aula', function (Blueprint $table) {
             
            
-            $table->unsignedBigInteger('modulo_id');
+           
             $table->unsignedBigInteger('aula_id');
+            $table->unsignedBigInteger('modulo_id');
           
 
             // Definir las claves foráneas
-            $table->foreign('modulo_id')->references('id')->on('Modulos')->onDelete('cascade');
+            
             $table->foreign('aula_id')->references('id')->on('Aulas')->onDelete('cascade');
+            $table->foreign('modulo_id')->references('id')->on('Modulos')->onDelete('cascade');
         });
     }
 
@@ -29,6 +31,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('aula_modulo');
+        Schema::dropIfExists('modulo_aula');
     }
 };

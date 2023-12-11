@@ -19,7 +19,7 @@ class AulaController extends Controller
     {
         $aulas = Aula::all();
         return Aula::collection($aulas);
-        $aulasIds = $aulas->pluck('id');
+        
 
     }
 
