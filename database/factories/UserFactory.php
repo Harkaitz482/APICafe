@@ -26,6 +26,7 @@ class UserFactory extends Factory
             'email_verified_at' => now(),
             'password' => bcrypt('password'), // You might want to use a more secure method to generate passwords
             'remember_token' => Str::random(10),
+            'tipoUsuario' => $this->faker->randomElement(['Jefe de estudios', 'Profesor']),
             'departamento_id' => \App\Models\Departamento::factory(),
             'especialidad_id' => \App\Models\Especialidad::factory(),
         ];
