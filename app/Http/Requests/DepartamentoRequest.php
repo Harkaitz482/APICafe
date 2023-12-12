@@ -23,7 +23,6 @@ class DepartamentoRequest extends FormRequest
     {
         return [
             'nombre' => 'required|string|max:255',
-            'puesto'=>  'required|string|max:255'
         ];
     }
 }

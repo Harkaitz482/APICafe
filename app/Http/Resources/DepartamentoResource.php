@@ -17,7 +17,6 @@ class DepartamentoResource extends JsonResource
         return [
             'id' => $this->id,
             'nombre' => $this->nombre,
-            'puesto' => $this->puesto,
         
         ];
     }
