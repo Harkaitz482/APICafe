@@ -47,6 +47,8 @@ Route::middleware('auth:sanctum')->group(function () {
         //     });
 
         Route::get('/especialidades/{especialidad}', [EspecialidadController::class,'show']);
+        Route::get('/modulos/especialidad/{especialidadId}', [ModuloController::class, 'modulosPorEspecialidad']);
+
     });
 });
 

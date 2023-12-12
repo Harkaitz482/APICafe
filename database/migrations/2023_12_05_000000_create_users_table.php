@@ -18,7 +18,7 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
-            $table->enum('tipoUsuario', ['Jefe de estudios', 'Profesor']);
+            $table->enum('tipoUsuario', ['Jefe de estudios', 'Profesor','jefe de departamento']);
             $table->foreignId('departamento_id')->constrained();
             $table->foreignId('especialidad_id')->constrained();
             $table->timestamps();

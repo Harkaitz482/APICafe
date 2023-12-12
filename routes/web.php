@@ -1,7 +1,11 @@
 <?php
 
 use App\Http\Controllers\Api\V1\ModuloController;
+use App\Http\Controllers\JefeDepartamentoController;
+use App\Http\Controllers\JefeEstudiosController;
 use Illuminate\Support\Facades\Route;
+
+
 
 
 /*
@@ -26,4 +30,8 @@ Route::get('/', function () {
 Route::get('/form', [App\Http\Controllers\Api\V1\ModuloController::class, 'index']);
 
 Route::post('/login', [App\Http\Controllers\Auth\LoginRegisterController::class, 'login']);
+
+
+Route::get('/jefe-estudios/modulos', [JefeEstudiosController::class, 'index']);
+Route::get('/jefe-departamento/modulos', [JefeDepartamentoController::class, 'index']);
 
