@@ -14,8 +14,10 @@
     <body>
         <div class="container">
             <div class="container">
-                <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
-                    <div class="col-md-3 mb-2 mb-md-0">
+                <header
+                    class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-4 mb-54 border-bottom"
+                >
+                    <div class="col-md-1 mb-2 mb-md-0">
                         <a
                             href="/"
                             class="d-inline-flex link-body-emphasis text-decoration-none"
@@ -30,14 +32,16 @@
                             />
                         </a>
                     </div>
-                    <h1 id="saludo"></h1>
-                    <div id="botonesHeader" class="col-md-3 text-end">
-                        <button id="logout" type="button" class="btn btn-outline-danger">
+                    <h1 id="saludo" class="saludo me-5"></h1>
+                    <div id="botonesHeader" class="col-0 text-center">
+                        <button
+                            id="logout"
+                            type="button"
+                            class="btn btn-outline-danger"
+                        >
                             Logout
                         </button>
-                    </header>
-
-                    
+                    </div>
                 </header>
             </div>
             <div class="container">
@@ -48,59 +52,119 @@
                                 <div
                                     class="d-flex align-items-center p-3 my-3 majada-b-rojo rounded shadow-sm"
                                 >
-                                <table>
-                                    <thead>
-                                        <tr>
-                                            <th scope="col" class="tabla-width-15">
-                                                <span class="fw-bold input-group-text">Turno</span>
-                                            </th>
-                                            <th scope="col">
-                                                <span class="fw-bold input-group-text">Curso y ciclo</span>
-                                            </th>
-                                            <th scope="col">
-                                                <span class="fw-bold input-group-text">Modulo</span>
-                                            </th>
-                                            <th scope="col" class="tabla-width-5">
-                                                <span class="fw-bold input-group-text">Horas</span>
-                                            </th>
-                                            <th scope="col" class="tabla-width-15">
-                                                <span class="fw-bold input-group-text">Dist. Semanal</span>
-                                            </th>
-                                            <th scope="col" class="tabla-width-5">
-                                                <span class="fw-bold input-group-text">Aula/Taller</span>
-                                            </th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>
-                                                <input type="text" class="form-control" placeholder="Curso y ciclo" aria-label="Curso y ciclo" id="turno">
-                                            </td>
-                                            <td>
-                                                <input type="text" class="form-control" placeholder="Curso y ciclo" aria-label="Curso y ciclo" id="nombre">
-                                            </td>
-                                            <td>
-                                                <select class="form-select" aria-label="Default select example">
-                                                    <option selected>Seleccionar módulo</option>
-                                                </select>
-                                            </td>
-                                            <td>
-                                                <input type="number" class="form-control" placeholder="Horas" aria-label="Horas" id="horas">
-                                            </td>
-                                            <td>
-                                                <select class="form-select" aria-label="Default select example">
-                                                    <option selected>Seleccionar dist. Semanal</option>
-                                                    <option value="1">1+2+2</option>
-                                                    <option value="2">3+3+2</option>
-                                                    <option value="3">3+2+2</option>
-                                                </select>
-                                            </td>
-                                            <td>
-                                                <input type="text" class="form-control" placeholder="Aula/Taller" aria-label="Aula/Taller" id="aula">
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+                                    <table>
+                                        <thead>
+                                            <tr>
+                                                <th
+                                                    scope="col"
+                                                    class="tabla-width-15"
+                                                >
+                                                    <span
+                                                        class="fw-bold input-group-text"
+                                                        >Turno</span
+                                                    >
+                                                </th>
+                                                <th scope="col">
+                                                    <span
+                                                        class="fw-bold input-group-text"
+                                                        >Curso y ciclo</span
+                                                    >
+                                                </th>
+                                                <th scope="col">
+                                                    <span
+                                                        class="fw-bold input-group-text"
+                                                        >Modulo</span
+                                                    >
+                                                </th>
+                                                <th
+                                                    scope="col"
+                                                    class="tabla-width-5"
+                                                >
+                                                    <span
+                                                        class="fw-bold input-group-text"
+                                                        >Horas</span
+                                                    >
+                                                </th>
+                                                <th
+                                                    scope="col"
+                                                    class="tabla-width-15"
+                                                >
+                                                    <span
+                                                        class="fw-bold input-group-text"
+                                                        >Dist. Semanal</span
+                                                    >
+                                                </th>
+                                                <th
+                                                    scope="col"
+                                                    class="tabla-width-5"
+                                                >
+                                                    <span
+                                                        class="fw-bold input-group-text"
+                                                        >Aula/Taller</span
+                                                    >
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>
+                                                    <input
+                                                        type="text"
+                                                        class="form-control"
+                                                        placeholder="Curso y ciclo"
+                                                        aria-label="turno"
+                                                        id="turno"
+                                                    />
+                                                </td>
+                                                <td>
+                                                    <input
+                                                        type="text"
+                                                        class="form-control"
+                                                        placeholder="Curso y ciclo"
+                                                        aria-label="Curso y ciclo"
+                                                        id="nombre"
+                                                    />
+                                                </td>
+                                                <td>
+                                                    <select
+                                                        class="form-select"
+                                                        aria-label="Default select example"
+                                                    >
+                                                        <option selected>
+                                                            Seleccionar módulo
+                                                        </option>
+                                                    </select>
+                                                </td>
+                                                <td>
+                                                    <input
+                                                        type="number"
+                                                        class="form-control"
+                                                        placeholder="Horas"
+                                                        aria-label="Horas"
+                                                        id="horas"
+                                                    />
+                                                </td>
+                                                <td>
+                                                    <select
+                                                        class="form-select"
+                                                        aria-label="Default select example"
+                                                        id="resultadosElement"
+                                                    >
+                                                        
+                                                    </select>
+                                                </td>
+                                                <td>
+                                                    <input
+                                                        type="text"
+                                                        class="form-control"
+                                                        placeholder="Aula/Taller"
+                                                        aria-label="Aula/Taller"
+                                                        id="aula"
+                                                    />
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
                                 </div>
 
                                 <div

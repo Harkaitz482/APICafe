@@ -177,7 +177,6 @@ const aulaInput = document.getElementById("aula");
 
 function mostrarHoras(moduloId) {
     const apiUrlHoras = `http://apicafe.test/api/V1/modulos/${moduloId}`;
-    console.log(moduloId);
 
     fetch(apiUrlHoras, {
         method: "GET",
@@ -194,28 +193,41 @@ function mostrarHoras(moduloId) {
             if (data && data.nombre && data.horas_semanales) {
                 // Establecer el valor del input del nombre y las horas_semanales
                 nombreInput.value = data.nombre;
-
                 horasInput.value = data.horas_semanales;
+
+                // Llamar a la función sumasPosibles con el valor de horas_semanales
+                const horasValue = parseInt(data.horas_semanales);
+                if (!isNaN(horasValue)) {
+                    const resultados = sumasPosibles(horasValue);
+
+                    // Generar las opciones para el elemento select basado en los resultados
+                    const selectOptions = resultados.map((resultado, index) => {
+                        return `<option value="${index}">${resultado.join(
+                            " - "
+                        )}</option>`;
+                    });
+
+                    // Asignar las opciones al elemento select
+                    resultadosElement.innerHTML = selectOptions.join("");
+                }
+
+                const dataCurso = result.data.curso;
+                if (data.curso && data.curso.turno) {
+                    turnoInput.value = data.curso.turno;
+                }
+
+                const dataAula = result.data.aula;
+                dataAula.forEach((e) => {
+                    if (e && e.numero) {
+                        aulaInput.value = e.numero;
+                        console.log(e);
+                    }
+                });
             } else {
                 console.error(
                     "No se encontraron datos completos para este módulo"
                 );
             }
-            const dataCurso = result.data.curso;
-            console.log(dataCurso);
-
-            if (data.curso && data.curso.turno) {
-                turnoInput.value = data.curso.turno;
-            }
-
-            const dataAula = result.data.aula;
-
-            dataAula.forEach((e) => {
-                if (e && e.numero) {
-                    aulaInput.value = e.numero;
-                    console.log(e);
-                }
-            });
         })
         .catch((error) => {
             console.error("Error al obtener datos de la API:", error);
@@ -303,7 +315,6 @@ botonAgregarCampos.addEventListener("click", function () {
     contenedorFormularios.insertBefore(nuevosCampos, horastotal);
 });
 
-
 // Esta es la función sumasPosibles que ya tienes
 function sumasPosibles(numero) {
     let resultados = [];
@@ -333,31 +344,36 @@ function sumasPosibles(numero) {
                 (arr) => JSON.stringify(arr) === JSON.stringify(valor)
             ) === indice
     );
-
+    console.log(resultados + "totales");
     return resultados;
 }
 
 // Obtener referencia al elemento con ID 'horas'
-const inputHoras = document.getElementById("diSemanal");
+const inputHoras = document.getElementById("horas");
 const resultadosElement = document.getElementById("resultadosElement");
 
-// inputHoras.addEventListener("input", function () {
-//     const horasValue = parseInt(inputHoras.value);
+function actualizarResultados() {
+    const horasValue = parseInt(inputHoras.value);
 
-//     if (!isNaN(horasValue)) {
-//         const resultados = sumasPosibles(horasValue);
+    if (!isNaN(horasValue)) {
+        const resultados = sumasPosibles(horasValue);
 
-//         // Limpiar contenido previo en el desplegable
-//         resultadosElement.innerHTML = "";
+        resultadosElement.innerHTML = "";
 
-//         // Agregar una opción por cada resultado al desplegable
-//         resultados.forEach((resultado) => {
-//             const option = document.createElement("option");
-//             option.text = resultado.join(" + ");
-//             resultadosElement.add(option);
-//         });
-//     }
-// });
+        resultados.forEach((resultado) => {
+            const option = document.createElement("option");
+            option.text = resultado.join(" + ");
+            resultadosElement.add(option);
+        });
+    }
+}
+
+inputHoras.addEventListener("input", actualizarResultados);
+
+// Ejecutar la función al cargar la página si ya hay un valor en #horas
+if (inputHoras.value !== "") {
+    actualizarResultados();
+}
 
 function mostrarBotonDepartamento() {
     // Verificar si el sessionStorage es compatible con el navegador y obtener el tipo de usuario
@@ -368,8 +384,12 @@ function mostrarBotonDepartamento() {
         if (tipoUsuario === "Jefe de estudios") {
             // Crear un botón para el departamento
             const botonDepartamento = document.createElement("button");
-            botonDepartamento.textContent = "Gestionar Departamento";
-            botonDepartamento.classList.add("btn", "btn-outline-success", "me-2"); // Ajustar clases según el estilo deseado
+            botonDepartamento.textContent = "Gestionar";
+            botonDepartamento.classList.add(
+                "btn",
+                "btn-outline-primary",
+                "me-2"
+            ); // Ajustar clases según el estilo deseado
             // Agregar funcionalidad al botón (puede ser un evento 'click', por ejemplo)
             botonDepartamento.addEventListener("click", function () {
                 // Colocar aquí la lógica a realizar al hacer clic en el botón
@@ -378,9 +398,18 @@ function mostrarBotonDepartamento() {
 
             // Obtener el contenedor para los botones del encabezado
             const botonesHeader = document.getElementById("botonesHeader");
-            
+
             // Agregar el botón del departamento al contenedor
             botonesHeader.appendChild(botonDepartamento);
+        } else if (tipoUsuario === "Jefe de departamento") {
+            const botonDepartamento = document.createElement("button");
+            botonDepartamento.textContent = "Gestionar";
+            botonDepartamento.classList.add(
+                "btn",
+                "btn-outline-primary",
+                "me-2"
+            ); // Ajustar clases según el estilo deseado
+            // Agregar funcionalidad al botón (puede ser un evento 'click', por ejemplo)
         }
     }
 }
