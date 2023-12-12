@@ -100,11 +100,30 @@ function obtenerToken() {
 // Ejemplo de uso:
 const token = obtenerToken();
 
+function obtenerEspecialidad() {
+    // Verificar si el sessionStoragre es compatible con el navegador
+    if (typeof Storage !== "undefined") {
+        // Obtener el token almacenado en el sessionStoragre
+        const especialidad = sessionStorage.getItem("Especialidad");
+
+        // Verificar si el token existe
+        if (especialidad) {
+            return especialidad; // Devolver el valor del token
+        } else {
+            return null; // Devolver null si no se encuentra el token
+        }
+    }
+}
+
+// Ejemplo de uso:
+const especialidadId = obtenerEspecialidad();
+console.log(especialidadId)
+
+
 // Verificar si el token existe
 
 // URL de la API que proporciona la información de los módulos
-const apiUrl = "http://apicafe.test/api/V1/modulos";
-// Realizar la solicitud a la API
+const apiUrl = `http://apicafe.test/api/V1/modulos/especialidad/${especialidadId}`;
 fetch(apiUrl, {
     method: "GET",
     headers: {
@@ -112,13 +131,17 @@ fetch(apiUrl, {
         "Content-Type": "application/json",
     },
 })
-    .then((response) => response.json())
-    .then((result) => {
-        const data = result.data;
-        // Acceder al arreglo 'data' en el resultado
+    .then((response) => {
+        console.log(response);
+        return response.json();
+    })
 
-        if (Array.isArray(data) && data.length > 0) {
-            data.forEach((modulo) => {
+    .then((result) => {
+        const modulos = result.modulos;
+        console.log(modulos);
+    
+        if (Array.isArray(modulos) && modulos.length > 0) {
+            modulos.forEach((modulo) => {
                 const option = document.createElement("option");
                 option.value = modulo.id;
                 option.textContent = modulo.codigo;
@@ -126,14 +149,14 @@ fetch(apiUrl, {
                 sessionStorage.setItem("modulo", modulo.id);
             });
         } else {
-            console.error(
-                "El arreglo 'data' está vacío o no contiene elementos"
-            );
+            console.error("El arreglo 'modulos' está vacío o no contiene elementos");
         }
+
     })
     .catch((error) => {
         console.error("Error al obtener datos de la API:", error);
     });
+
 
 // Función para manejar el logout
 
@@ -148,25 +171,6 @@ logoutButton.addEventListener("click", function () {
     // Redireccionar a la página de inicio de sesión
     window.location.href = "index.html"; // Cambia '/login' por la URL de tu página de inicio de sesión
 });
-
-function obtenerModulo() {
-    // Verificar si el sessionStoragre es compatible con el navegador
-    if (typeof Storage !== "undefined") {
-        // Obtener el token almacenado en el sessionStoragre
-        const moduloid = sessionStorage.getItem("modulo");
-
-        // Verificar si el token existe
-        if (moduloid) {
-            return moduloid; // Devolver el valor del token
-        } else {
-            return null; // Devolver null si no se encuentra el token
-        }
-    }
-}
-
-// Ejemplo de uso:
-const moduloid = obtenerModulo();
-
 // Obtener referencia al select y al contenedor de horas
 
 // Función para obtener y mostrar las horas correspondientes al módulo seleccionado
@@ -176,7 +180,7 @@ const turnoInput = document.getElementById("turno");
 const aulaInput = document.getElementById("aula");
 
 function mostrarHoras(moduloId) {
-    const apiUrlHoras = `http://apicafe.test/api/V1/modulos/${moduloId}`;
+    const apiUrlHoras = `api/V1/modulos/${moduloId}`;
 
     fetch(apiUrlHoras, {
         method: "GET",
