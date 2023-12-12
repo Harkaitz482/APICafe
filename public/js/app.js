@@ -38,20 +38,6 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
     // Cambia <link>addButton.addEventListener</link> por <link>addFormulario.addEventListener</link>
-    // Evento para agregar una nueva tabla al hacer clic en el botón correspondiente
-    const addButton = document.getElementById("añadirFormulario");
-    addButton.addEventListener("click", function () {
-        const formulario = document.getElementById("formulario");
-        const tableToClone = formulario.querySelector(".majada-b-rojo");
-        const newTable = tableToClone.cloneNode(true);
-
-        // Encuentra el elemento después del cual quieres añadir el formulario
-        const horasTotalesElement = document.getElementById("HorasTotal");
-
-        // Inserta el formulario justo después del elemento 'HorasTotales'
-        horasTotalesElement.insertAdjacentElement("afterbegin", newTable);
-    });
-
     // Evento para eliminar la última tabla al hacer clic en el botón correspondiente
     const eliminarButton = document.getElementById("eliminarFormulario");
     eliminarButton.addEventListener("click", function () {
@@ -247,87 +233,159 @@ function crearCampos() {
         "d-flex align-items-center p-3 my-3 majada-b-rojo rounded";
 
     nuevoDiv.innerHTML = `
-      <table>
-          <thead>
-              <tr>
-                  <th scope="col" class="tabla-width-15">
-                      <span class="fw-bold input-group-text">Turno</span>
-                  </th>
-                  <th scope="col">
-                      <span class="fw-bold input-group-text">Curso y ciclo</span>
-                  </th>
-                  <th scope="col">
-                      <span class="fw-bold input-group-text">Modulo</span>
-                  </th>
-                  <th scope="col" class="tabla-width-5">
-                      <span class="fw-bold input-group-text">Horas</span>
-                  </th>
-                  <th scope="col" class="tabla-width-15">
-                      <span class="fw-bold input-group-text">Dist. Semanal</span>
-                  </th>
-                  <th scope="col" class="tabla-width-5">
-                      <span class="fw-bold input-group-text">Aula/Taller</span>
-                  </th>
-              </tr>
-          </thead>
-          <tbody>
-              <tr>
-                  <td>
-                      <input type="text" class="form-control" placeholder="Curso y ciclo" aria-label="Curso y ciclo" id="turno">
-                  </td>
-                  <td>
-                      <input type="text" class="form-control" placeholder="Curso y ciclo" aria-label="Curso y ciclo" id="nombre">
-                  </td>
-                  <td>
-                      <select class="form-select" aria-label="Default select example">
-                          <option selected>Seleccionar módulo</option>
-                      </select>
-                  </td>
-                  <td>
-                      <input type="number" class="form-control" placeholder="Horas" aria-label="Horas" id="horas">
-                  </td>
-                  <td>
-                      <select class="form-select" aria-label="Default select example">
-                          <option selected>Seleccionar dist. Semanal</option>
-                          <option value="1">1+2+2</option>
-                          <option value="2">3+3+2</option>
-                          <option value="3">3+2+2</option>
-                      </select>
-                  </td>
-                  <td>
-                      <input type="text" class="form-control" placeholder="Aula/Taller" aria-label="Aula/Taller" id="aula">
-                  </td>
-              </tr>
-          </tbody>
-      </table>
-      <div class="modal fade" id="infoModal" tabindex="-1" aria-labelledby="infoModalLabel" aria-hidden="true">
-          <div class="modal-dialog">
-              <div class="modal-content">
-                  <div class="modal-header">
-                      <h5 class="modal-title" id="infoModalLabel">Información sobre Horas</h5>
-                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                  </div>
-                  <div class="modal-body">
-                      <p id="modalContent">Las horas totales están dentro del rango correcto.</p>
-                  </div>
-                  <div class="modal-footer">
-                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                  </div>
-              </div>
-          </div>
-      </div>
+<table>
+        <thead>
+            <tr>
+                <th scope="col" class="tabla-width-15">
+                    <span class="fw-bold input-group-text">Turno</span>
+                </th>
+                <th scope="col">
+                    <span class="fw-bold input-group-text">Curso y ciclo</span>
+                </th>
+                <th scope="col">
+                    <span class="fw-bold input-group-text">Modulo</span>
+                </th>
+                <th scope="col" class="tabla-width-5">
+                    <span class="fw-bold input-group-text">Horas</span>
+                </th>
+                <th scope="col" class="tabla-width-15">
+                    <span class="fw-bold input-group-text">Dist. Semanal</span>
+                </th>
+                <th scope="col" class="tabla-width-5">
+                    <span class="fw-bold input-group-text">Aula/Taller</span>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    <input type="text" class="form-control" placeholder="Curso y ciclo" aria-label="Curso y ciclo" id="turno">
+                </td>
+                <td>
+                    <input type="text" class="form-control" placeholder="Curso y ciclo" aria-label="Curso y ciclo" id="nombre">
+                </td>
+                <td>
+                    <select class="form-select" aria-label="Default select example">
+                        <option selected>Seleccionar módulo</option>
+                    </select>
+                </td>
+                <td>
+                    <input type="number" class="form-control" placeholder="Horas" aria-label="Horas" id="horas">
+                </td>
+                <td>
+                    <select class="form-select" aria-label="Default select example">
+                        <option selected>Seleccionar dist. Semanal</option>
+                        <option value="1">1+2+2</option>
+                        <option value="2">3+3+2</option>
+                        <option value="3">3+2+2</option>
+                    </select>
+                </td>
+                <td>
+                    <input type="text" class="form-control" placeholder="Aula/Taller" aria-label="Aula/Taller" id="aula">
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    
     `;
 
     return nuevoDiv;
 }
 
 const botonAgregarCampos = document.getElementById("agregarCampos");
-const contenedorCampos = document.getElementById("formulario");
+const contenedorFormularios = document.getElementById("contenedorFormularios");
+const horastotal = document.getElementById("HorasTotal");
 
 botonAgregarCampos.addEventListener("click", function () {
     const nuevosCampos = crearCampos();
-    const modal = document.getElementById("infoModal");
 
-    // Insertar nuevos campos justo antes del modal
-    modal.insertAdjacentElement("beforebegin", nuevosCampos);
+    // Insertar nuevos campos justo antes de HorasTotal
+    contenedorFormularios.insertBefore(nuevosCampos, horastotal);
+});
+
+
+// Esta es la función sumasPosibles que ya tienes
+function sumasPosibles(numero) {
+    let resultados = [];
+
+    function encontrarSumas(actuales, objetivo) {
+        if (objetivo === 0 && actuales.length > 0) {
+            // Ordenar el array antes de agregarlo a los resultados
+            resultados.push(actuales.slice().sort((a, b) => a - b));
+            return;
+        }
+
+        if (objetivo < 0 || actuales.length === 5) {
+            return;
+        }
+
+        for (let i = 1; i <= 3; i++) {
+            encontrarSumas([...actuales, i], objetivo - i);
+        }
+    }
+
+    encontrarSumas([], numero);
+
+    // Eliminar duplicados
+    resultados = resultados.filter(
+        (valor, indice, array) =>
+            array.findIndex(
+                (arr) => JSON.stringify(arr) === JSON.stringify(valor)
+            ) === indice
+    );
+
+    return resultados;
+}
+
+// Obtener referencia al elemento con ID 'horas'
+const inputHoras = document.getElementById("diSemanal");
+const resultadosElement = document.getElementById("resultadosElement");
+
+// inputHoras.addEventListener("input", function () {
+//     const horasValue = parseInt(inputHoras.value);
+
+//     if (!isNaN(horasValue)) {
+//         const resultados = sumasPosibles(horasValue);
+
+//         // Limpiar contenido previo en el desplegable
+//         resultadosElement.innerHTML = "";
+
+//         // Agregar una opción por cada resultado al desplegable
+//         resultados.forEach((resultado) => {
+//             const option = document.createElement("option");
+//             option.text = resultado.join(" + ");
+//             resultadosElement.add(option);
+//         });
+//     }
+// });
+
+function mostrarBotonDepartamento() {
+    // Verificar si el sessionStorage es compatible con el navegador y obtener el tipo de usuario
+    if (typeof Storage !== "undefined") {
+        const tipoUsuario = sessionStorage.getItem("TipoUsuario");
+
+        // Verificar si el tipo de usuario es "jefe de departamento"
+        if (tipoUsuario === "Jefe de estudios") {
+            // Crear un botón para el departamento
+            const botonDepartamento = document.createElement("button");
+            botonDepartamento.textContent = "Gestionar Departamento";
+            botonDepartamento.classList.add("btn", "btn-outline-success", "me-2"); // Ajustar clases según el estilo deseado
+            // Agregar funcionalidad al botón (puede ser un evento 'click', por ejemplo)
+            botonDepartamento.addEventListener("click", function () {
+                // Colocar aquí la lógica a realizar al hacer clic en el botón
+                // Por ejemplo, redirigir a una página de gestión de departamentos, etc.
+            });
+
+            // Obtener el contenedor para los botones del encabezado
+            const botonesHeader = document.getElementById("botonesHeader");
+            
+            // Agregar el botón del departamento al contenedor
+            botonesHeader.appendChild(botonDepartamento);
+        }
+    }
+}
+
+// Llamar a la función para mostrar el botón del departamento cuando sea necesario
+document.addEventListener("DOMContentLoaded", function () {
+    mostrarBotonDepartamento();
 });

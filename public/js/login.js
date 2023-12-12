@@ -31,6 +31,8 @@ document
                 let name = data.data.user.name;
                 sessionStorage.setItem("name", name);
                 // Redireccionar si el inicio de sesión es exitoso
+                let tipoUser = data.data.user.tipoUsuario;
+                sessionStorage.setItem("TipoUsuario", tipoUser);
                 window.location.href = "form.html";
             })
             .catch((error) => {
