@@ -26,6 +26,7 @@ class ModuloResource extends JsonResource
             'nombre' => $this->nombre,
             'horas_semanales' => $this->horas_semanales,
             'horas_totales' => $this->horas_totales,
+            'CargaHoraria' => $this->CargaHoraria,
             'user_id' => $this->user_id,
             // 'especialidad' =>  Modulo::find($this->id)->especialidad()->get(), 
             'especialidad' => new EspecialidadResource(($this->especialidad)), // Asumiendo que hay una relación "especialidad"

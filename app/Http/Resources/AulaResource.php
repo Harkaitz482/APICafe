@@ -12,13 +12,14 @@ class AulaResource extends JsonResource
      *
     //  * @return array<string, mixed>
      */
-    // public function toArray(Request $request): array
-    // {
-        // return [
-            // 'id' => $this->id,
-            // 'numero' => $this->numero,
-            // 'disponibilidad'=>$this->disponibilidad,
-        // 
-        // ];
-    // }
+    public function toArray(Request $request): array
+    {
+        return [
+            'id' => $this->id,
+            'numero' => $this->numero,
+            'disponibilidad' => $this->disponibilidad,
+            'horasMañana' => $this->horasMañanas,
+            'horasTarde' => $this->horasTarde,
+        ];
+    }
 }

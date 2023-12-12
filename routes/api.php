@@ -54,5 +54,5 @@ Route::middleware('auth:sanctum')->group(function () {
 Route::controller(LoginRegisterController::class)->group(function () {
     Route::post('/register', 'register');
     Route::post('/login', 'login');
-    Route::delete('/logout','logout');
+    Route::post('/logout','logout');
 });

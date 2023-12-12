@@ -105,12 +105,21 @@ class LoginRegisterController extends Controller
      */
     public function logout(Request $request)
     {
-        auth()->user()->tokens()->delete();
-        return response()->json([
-            'status' => 'success',
-            'message' => 'User is logged out successfully'
+        $user = auth()->user();
+    
+        if ($user) {
+            auth()->tokens()->delete();
+            return response()->json([
+                'status' => 'success',
+                'message' => 'User is logged out successfully'
             ], 200);
-    }    
+        } else {
+            return response()->json([
+                'status' => 'failed',
+                'message' => 'User not authenticated'
+            ], 401);
+        }
+    }
 
     
 
