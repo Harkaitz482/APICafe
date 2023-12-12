@@ -17,9 +17,9 @@ class ModuloResource extends JsonResource
      *
      * @return array<string, mixed>
      */
-    public function toArray( Request $request)
+    public function toArray(Request $request)
     {
-     
+
         return [
             'id' => $this->id,
             'codigo' => $this->codigo,
@@ -28,10 +28,10 @@ class ModuloResource extends JsonResource
             'horas_totales' => $this->horas_totales,
             'user_id' => $this->user_id,
             // 'especialidad' =>  Modulo::find($this->id)->especialidad()->get(), 
-            'especialidad'=> new EspecialidadResource(($this->especialidad)), // Asumiendo que hay una relación "especialidad"
-            'curso'=> new CursoResource(($this->curso)), 
-            'aula'=> $this->aulas, 
-             
+            'especialidad' => new EspecialidadResource(($this->especialidad)), // Asumiendo que hay una relación "especialidad"
+            'curso' => new CursoResource(($this->curso)),
+            'aula' => $this->aulas,
+
             // Agrega otros campos según sea necesario
             // 'created_at' => $this->created_at,
             // 'updated_at' => $this->updated_at,

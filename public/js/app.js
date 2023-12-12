@@ -67,18 +67,15 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
-
-
-
 const selectModulo = document.querySelector(
     '#formulario select[aria-label="Default select example"]'
 );
 const mensaje = "no hay nombre";
 function obtenerNombre() {
-    // Verificar si el localStorage es compatible con el navegador
+    // Verificar si el session es compatible con el navegador
     if (typeof Storage !== "undefined") {
-        // Obtener el token almacenado en el localStorage
-        const name = localStorage.getItem("name");
+        // Obtener el token almacenado en el session
+        const name = sessionStorage.getItem("name");
 
         // Verificar si el token existe
         if (name) {
@@ -90,7 +87,7 @@ function obtenerNombre() {
 }
 const nombre = obtenerNombre();
 
-// Verificar si se obtuvo el nombre del localStorage
+// Verificar si se obtuvo el nombre del sessionStoragre
 if (nombre) {
     const saludo = document.getElementById("saludo");
     saludo.textContent = "Bienvenido " + nombre.toUpperCase(); // Mostrar el mensaje de bienvenida con el nombre del usuario
@@ -100,10 +97,10 @@ if (nombre) {
 
 //
 function obtenerToken() {
-    // Verificar si el localStorage es compatible con el navegador
+    // Verificar si el sessionStoragre es compatible con el navegador
     if (typeof Storage !== "undefined") {
-        // Obtener el token almacenado en el localStorage
-        const token = localStorage.getItem("token");
+        // Obtener el token almacenado en el sessionStoragre
+        const token = sessionStorage.getItem("token");
 
         // Verificar si el token existe
         if (token) {
@@ -113,9 +110,6 @@ function obtenerToken() {
         }
     }
 }
-
-
-
 
 // Ejemplo de uso:
 const token = obtenerToken();
@@ -143,64 +137,37 @@ fetch(apiUrl, {
                 option.value = modulo.id;
                 option.textContent = modulo.codigo;
                 selectModulo.appendChild(option);
-                localStorage.setItem("modulo", modulo.id);
+                sessionStorage.setItem("modulo", modulo.id);
             });
         } else {
             console.error(
                 "El arreglo 'data' está vacío o no contiene elementos"
             );
         }
-
     })
     .catch((error) => {
         console.error("Error al obtener datos de la API:", error);
     });
 
-
-
 // Función para manejar el logout
-function logout() {
-    fetch("http://apicafe.test/api/logout", {
-        method: "GET",
-        headers: {
-            "Authorization": `Bearer ${token}`,
-            // Otros encabezados si son necesarios
-        }
-    })
-        .then((response) => {
-            if (!response.ok) {
-                throw new Error("Error al cerrar sesión");
-            }
-            return response.json();
-        })
-        .then((data) => {
-            console.log(data);
-            // Eliminar el token y otros datos almacenados en localStorage al cerrar sesión
-            localStorage.removeItem("token");
-            localStorage.removeItem("name");
-            // Redirigir a la página de inicio de sesión u otra página deseada
-            window.location.href = "login.html";
-        })
-        .catch((error) => {
-            console.error("Error:", error.message);
-            // Manejar errores, mostrar mensajes, etc.
-        });
-}
 
-// Agregar un event listener al botón de logout
-document.getElementById("logout").addEventListener("click", function () {
-    // Llamar a la función de logout al hacer clic en el botón
-    logout();
+// Obtener una referencia al botón de "logout"
+const logoutButton = document.getElementById("logout");
+
+// Agregar un evento de clic al botón
+logoutButton.addEventListener("click", function () {
+    // Eliminar datos de sesión (por ejemplo, eliminar un token almacenado en sessionStoragre)
+    sessionStorage.removeItem("token"); // Cambia 'token' por el nombre de tu clave de sesión
+
+    // Redireccionar a la página de inicio de sesión
+    window.location.href = "index.html"; // Cambia '/login' por la URL de tu página de inicio de sesión
 });
 
-
-
-
 function obtenerModulo() {
-    // Verificar si el localStorage es compatible con el navegador
+    // Verificar si el sessionStoragre es compatible con el navegador
     if (typeof Storage !== "undefined") {
-        // Obtener el token almacenado en el localStorage
-        const moduloid = localStorage.getItem("modulo");
+        // Obtener el token almacenado en el sessionStoragre
+        const moduloid = sessionStorage.getItem("modulo");
 
         // Verificar si el token existe
         if (moduloid) {
@@ -211,26 +178,16 @@ function obtenerModulo() {
     }
 }
 
-
-
-
 // Ejemplo de uso:
 const moduloid = obtenerModulo();
 
-
-
-
-
-
-
 // Obtener referencia al select y al contenedor de horas
-
-
 
 // Función para obtener y mostrar las horas correspondientes al módulo seleccionado
 const nombreInput = document.getElementById("nombre");
 const horasInput = document.getElementById("horas");
-const turnoInput = document.getElementById("turno")
+const turnoInput = document.getElementById("turno");
+const aulaInput = document.getElementById("aula");
 
 function mostrarHoras(moduloId) {
     const apiUrlHoras = `http://apicafe.test/api/V1/modulos/${moduloId}`;
@@ -243,29 +200,40 @@ function mostrarHoras(moduloId) {
             "Content-Type": "application/json",
         },
     })
-    .then((response) => response.json())
-    .then((result) => {
-        const data = result.data;
-        console.log(data);
-        
-        if (data && data.nombre && data.horas_semanales) {
-            // Establecer el valor del input del nombre y las horas_semanales
-            nombreInput.value = data.nombre;
-            
-            horasInput.value = data.horas_semanales;
-        } else {
-            console.error("No se encontraron datos completos para este módulo");
-        }
-        const dataCurso = result.data.curso
-        console.log(dataCurso)
+        .then((response) => response.json())
+        .then((result) => {
+            const data = result.data;
+            console.log(data);
 
-        if(data.curso && data.curso.turno){
-            turnoInput.value = data.curso.turno;
-        }
-    })
-    .catch((error) => {
-        console.error("Error al obtener datos de la API:", error);
-    });
+            if (data && data.nombre && data.horas_semanales) {
+                // Establecer el valor del input del nombre y las horas_semanales
+                nombreInput.value = data.nombre;
+
+                horasInput.value = data.horas_semanales;
+            } else {
+                console.error(
+                    "No se encontraron datos completos para este módulo"
+                );
+            }
+            const dataCurso = result.data.curso;
+            console.log(dataCurso);
+
+            if (data.curso && data.curso.turno) {
+                turnoInput.value = data.curso.turno;
+            }
+
+            const dataAula = result.data.aula;
+
+            dataAula.forEach((e) => {
+                if (e && e.numero) {
+                    aulaInput.value = e.numero;
+                    console.log(e);
+                }
+            });
+        })
+        .catch((error) => {
+            console.error("Error al obtener datos de la API:", error);
+        });
 }
 
 selectModulo.addEventListener("change", function (event) {
@@ -273,3 +241,93 @@ selectModulo.addEventListener("change", function (event) {
     mostrarHoras(moduloIdSeleccionado);
 });
 
+function crearCampos() {
+    const nuevoDiv = document.createElement("div");
+    nuevoDiv.className =
+        "d-flex align-items-center p-3 my-3 majada-b-rojo rounded";
+
+    nuevoDiv.innerHTML = `
+      <table>
+          <thead>
+              <tr>
+                  <th scope="col" class="tabla-width-15">
+                      <span class="fw-bold input-group-text">Turno</span>
+                  </th>
+                  <th scope="col">
+                      <span class="fw-bold input-group-text">Curso y ciclo</span>
+                  </th>
+                  <th scope="col">
+                      <span class="fw-bold input-group-text">Modulo</span>
+                  </th>
+                  <th scope="col" class="tabla-width-5">
+                      <span class="fw-bold input-group-text">Horas</span>
+                  </th>
+                  <th scope="col" class="tabla-width-15">
+                      <span class="fw-bold input-group-text">Dist. Semanal</span>
+                  </th>
+                  <th scope="col" class="tabla-width-5">
+                      <span class="fw-bold input-group-text">Aula/Taller</span>
+                  </th>
+              </tr>
+          </thead>
+          <tbody>
+              <tr>
+                  <td>
+                      <input type="text" class="form-control" placeholder="Curso y ciclo" aria-label="Curso y ciclo" id="turno">
+                  </td>
+                  <td>
+                      <input type="text" class="form-control" placeholder="Curso y ciclo" aria-label="Curso y ciclo" id="nombre">
+                  </td>
+                  <td>
+                      <select class="form-select" aria-label="Default select example">
+                          <option selected>Seleccionar módulo</option>
+                      </select>
+                  </td>
+                  <td>
+                      <input type="number" class="form-control" placeholder="Horas" aria-label="Horas" id="horas">
+                  </td>
+                  <td>
+                      <select class="form-select" aria-label="Default select example">
+                          <option selected>Seleccionar dist. Semanal</option>
+                          <option value="1">1+2+2</option>
+                          <option value="2">3+3+2</option>
+                          <option value="3">3+2+2</option>
+                      </select>
+                  </td>
+                  <td>
+                      <input type="text" class="form-control" placeholder="Aula/Taller" aria-label="Aula/Taller" id="aula">
+                  </td>
+              </tr>
+          </tbody>
+      </table>
+      <div class="modal fade" id="infoModal" tabindex="-1" aria-labelledby="infoModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+              <div class="modal-content">
+                  <div class="modal-header">
+                      <h5 class="modal-title" id="infoModalLabel">Información sobre Horas</h5>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                      <p id="modalContent">Las horas totales están dentro del rango correcto.</p>
+                  </div>
+                  <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                  </div>
+              </div>
+          </div>
+      </div>
+    `;
+
+    return nuevoDiv;
+}
+
+const botonAgregarCampos = document.getElementById("agregarCampos");
+const contenedorCampos = document.getElementById("formulario");
+
+botonAgregarCampos.addEventListener("click", function () {
+    const nuevosCampos = crearCampos();
+    const modal = document.getElementById("infoModal");
+
+    // Insertar nuevos campos justo antes del modal
+    modal.insertAdjacentElement("beforebegin", nuevosCampos);
+});
