@@ -27,9 +27,18 @@ class DepartamentoController extends Controller
      * @param  \App\Models\Departamento  $departamento
      * @return \Illuminate\Http\JsonResponse
      */
-    public function show(Departamento $departamento)
+    public function show($departamentoId)
     {
-        return new DepartamentoResource($departamento);
+        try {
+            // Obtén los datos del departamento según su ID
+            $department = Departamento::findOrFail($departamentoId);
+
+            // Devuelve una respuesta con los detalles del departamento
+            return response()->json(['departamento' => $department], 200);
+        } catch (\Exception $e) {
+            // Manejo de errores: el departamento no se encuentra
+            return response()->json(['error' => 'Departamento no encontrado'], 404);
+        }
     }
 
     /**

@@ -25,16 +25,18 @@ document
                 return response.json();
             })
             .then((data) => {
-                console.log(data)
+                console.log(data);
                 let token = data.data.token;
                 sessionStorage.setItem("token", token);
                 let name = data.data.user.name;
                 sessionStorage.setItem("name", name);
-                // Redireccionar si el inicio de sesión es exitoso
                 let tipoUser = data.data.user.tipoUsuario;
                 sessionStorage.setItem("TipoUsuario", tipoUser);
                 let especialidad = data.data.user.especialidad_id;
                 sessionStorage.setItem("Especialidad", especialidad);
+                let departamento = data.data.user.departamento_id;
+                sessionStorage.setItem("departamento", departamento);
+                 // Redireccionar si el inicio de sesión es exitoso
                 window.location.href = "form.html";
             })
             .catch((error) => {

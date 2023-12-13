@@ -97,7 +97,7 @@ function obtenerToken() {
     }
 }
 
-// Ejemplo de uso:
+
 const token = obtenerToken();
 
 function obtenerEspecialidad() {
@@ -115,7 +115,6 @@ function obtenerEspecialidad() {
     }
 }
 
-// Ejemplo de uso:
 const especialidadId = obtenerEspecialidad();
 console.log(especialidadId)
 
@@ -378,14 +377,14 @@ inputHoras.addEventListener("input", actualizarResultados);
 if (inputHoras.value !== "") {
     actualizarResultados();
 }
-
 function mostrarBotonDepartamento() {
     // Verificar si el sessionStorage es compatible con el navegador y obtener el tipo de usuario
     if (typeof Storage !== "undefined") {
         const tipoUsuario = sessionStorage.getItem("TipoUsuario");
+        console.log(tipoUsuario)
 
-        // Verificar si el tipo de usuario es "jefe de departamento"
-        if (tipoUsuario === "Jefe de estudios") {
+        // Verificar si el tipo de usuario es "Jefe de estudios" o "Jefe de departamento"
+        if (tipoUsuario === "jefe de departamento" || tipoUsuario === "jefe de departamento") {
             // Crear un botón para el departamento
             const botonDepartamento = document.createElement("button");
             botonDepartamento.textContent = "Gestionar";
@@ -394,10 +393,11 @@ function mostrarBotonDepartamento() {
                 "btn-outline-primary",
                 "me-2"
             ); // Ajustar clases según el estilo deseado
-            // Agregar funcionalidad al botón (puede ser un evento 'click', por ejemplo)
+            
+            // Agregar funcionalidad al botón: redirigir al hacer clic en el botón
             botonDepartamento.addEventListener("click", function () {
-                // Colocar aquí la lógica a realizar al hacer clic en el botón
-                // Por ejemplo, redirigir a una página de gestión de departamentos, etc.
+                window.location.href = "jefeDeparta.html";
+                // Cambiar "jefedepartamento.html" por la URL correcta a la que deseas redirigir
             });
 
             // Obtener el contenedor para los botones del encabezado
@@ -405,7 +405,22 @@ function mostrarBotonDepartamento() {
 
             // Agregar el botón del departamento al contenedor
             botonesHeader.appendChild(botonDepartamento);
-        } else if (tipoUsuario === "Jefe de departamento") {
+        }
+    }
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+    mostrarBotonDepartamento();
+});
+
+function mostrarBotonJefeDeEstudios() {
+    // Verificar si el sessionStorage es compatible con el navegador y obtener el tipo de usuario
+    if (typeof Storage !== "undefined") {
+        const tipoUsuario = sessionStorage.getItem("TipoUsuario");
+
+        // Verificar si el tipo de usuario es "Jefe de estudios" o "Jefe de departamento"
+        if (tipoUsuario === "Jefe de estudios" || tipoUsuario === "Jefe de departamento") {
+            // Crear un botón para el departamento
             const botonDepartamento = document.createElement("button");
             botonDepartamento.textContent = "Gestionar";
             botonDepartamento.classList.add(
@@ -413,12 +428,53 @@ function mostrarBotonDepartamento() {
                 "btn-outline-primary",
                 "me-2"
             ); // Ajustar clases según el estilo deseado
-            // Agregar funcionalidad al botón (puede ser un evento 'click', por ejemplo)
+            
+            // Agregar funcionalidad al botón: redirigir al hacer clic en el botón
+            botonDepartamento.addEventListener("click", function () {
+                window.location.href = "jefeDeEstudio.html";
+                // Cambiar "jefedepartamento.html" por la URL correcta a la que deseas redirigir
+            });
+
+            // Obtener el contenedor para los botones del encabezado
+            const botonesHeader = document.getElementById("botonesHeader");
+
+            // Agregar el botón del departamento al contenedor
+            botonesHeader.appendChild(botonDepartamento);
         }
     }
 }
 
+
+
 // Llamar a la función para mostrar el botón del departamento cuando sea necesario
 document.addEventListener("DOMContentLoaded", function () {
-    mostrarBotonDepartamento();
+    mostrarBotonJefeDeEstudios();
 });
+
+
+const especialidadNombreUrl = `http://apicafe.test/api/V1/especialidades/${especialidadId}`;
+
+fetch(especialidadNombreUrl, {
+    method: "GET",
+    headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+    },
+})
+    .then((response) => {
+        if (!response.ok) {
+            throw new Error('La solicitud no fue exitosa');
+        }
+        return response.json();
+    })
+    .then((result) => {
+        const nombreEspecialidad = result.data.nombre; // Asegúrate de que el campo "nombre" sea el correcto
+        const informacionDiv = document.getElementById('informacion');
+
+        informacionDiv.textContent = `Especialidad: ${nombreEspecialidad}`;
+        // O puedes utilizar innerHTML si quieres insertar HTML
+        // informacionDiv.innerHTML = `Especialidad: ${nombreEspecialidad}`;
+    })
+    .catch((error) => {
+        console.error("Error al obtener datos de la API:", error);
+    });

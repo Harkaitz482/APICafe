@@ -92,4 +92,12 @@ class ModuloController extends Controller
 
         return response()->json(['modulos' => $modulos]);
     }   
+
+    public function modulosPorUsuario($userid)
+    {
+        // Obtén todos los módulos que tienen la user_id proporcionada
+        $modulos = Modulo::where('user_id', $userid)->get();
+
+        return response()->json(['modulos' => $modulos]);
+    }
 }
