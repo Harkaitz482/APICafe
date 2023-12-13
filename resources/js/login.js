@@ -11,7 +11,7 @@ document
             password: password,
         };
 
-        fetch("https://apicafe.test/api/login", {
+        fetch("http://apicafe.test/api/login", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
