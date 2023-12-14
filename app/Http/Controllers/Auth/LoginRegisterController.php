@@ -121,6 +121,20 @@ class LoginRegisterController extends Controller
         }
     }
 
+    public function show()
+    {
+        try {
+            // Obtén todos los usuarios
+            $users = User::all();
+
+            // Devuelve una respuesta con todos los usuarios
+            return response()->json(['users' => $users], 200);
+        } catch (\Exception $e) {
+            // Manejo de errores: error al obtener usuarios
+            return response()->json(['error' => 'Error al obtener usuarios'], 500);
+        }
+    }
+
     
 
 

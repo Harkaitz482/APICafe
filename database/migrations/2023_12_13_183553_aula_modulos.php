@@ -21,8 +21,8 @@ return new class extends Migration
 
             // Definir las claves foráneas
             
-            $table->foreign('aula_id')->references('id')->on('Aulas')->onDelete('cascade');
-            $table->foreign('modulo_id')->references('id')->on('Modulos')->onDelete('cascade');
+            $table->foreign('aula_id')->references('id')->on('aulas')->onDelete('cascade');
+            $table->foreign('modulo_id')->references('id')->on('modulos')->onDelete('cascade');
         });
     }
 

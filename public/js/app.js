@@ -123,7 +123,7 @@ console.log(especialidadId)
 // Verificar si el token existe
 
 // URL de la API que proporciona la información de los módulos
-const apiUrl = `https://apicafe.test/api/V1/modulos/especialidad/${especialidadId}`;
+const apiUrl = `https://prueba-i03j.onrender.com/api/V1/modulos/especialidad/${especialidadId}`;
 fetch(apiUrl, {
     method: "GET",
     headers: {

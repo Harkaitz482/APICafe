@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 use App\Http\Requests\DepartamentoRequest;
 use App\Http\Resources\DepartamentoResource;
 use App\Models\Departamento;
+use App\Models\User;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+
 
 class DepartamentoController extends Controller
 {
@@ -27,9 +29,18 @@ class DepartamentoController extends Controller
      * @param  \App\Models\Departamento  $departamento
      * @return \Illuminate\Http\JsonResponse
      */
-    public function show(Departamento $departamento)
+    public function show($departamentoId)
     {
-        return new DepartamentoResource($departamento);
+        try {
+            // Obtén los datos del departamento según su ID
+            $department = Departamento::findOrFail($departamentoId);
+
+            // Devuelve una respuesta con los detalles del departamento
+            return response()->json(['departamento' => $department], 200);
+        } catch (\Exception $e) {
+            // Manejo de errores: el departamento no se encuentra
+            return response()->json(['error' => 'Departamento no encontrado'], 404);
+        }
     }
 
     /**
@@ -71,4 +82,6 @@ class DepartamentoController extends Controller
 
         return response()->json(['message' => 'Departamento eliminado con éxito']);
     }
+
+    
 }
