@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('password');
             $table->rememberToken();
             $table->enum('tipoUsuario', ['Jefe de estudios', 'Profesor','jefe de departamento']);
+            $table->string('horasTotales')->nullable();
             $table->foreignId('departamento_id')->nullable()->constrained();
             $table->foreignId('especialidad_id')->nullable()->constrained();
             $table->timestamps();

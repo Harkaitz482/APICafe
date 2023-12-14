@@ -3,7 +3,7 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-use \Faker\Factory;
+// use \Faker\Factory;
 use App\Models\Aula;
 use App\Models\Curso;
 use App\Models\Departamento;

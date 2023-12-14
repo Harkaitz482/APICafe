@@ -83,5 +83,12 @@ class DepartamentoController extends Controller
         return response()->json(['message' => 'Departamento eliminado con éxito']);
     }
 
+    public function todos(Departamento $departamentos){
+        $departamentos = Departamento::all();
+
+        return response()->json($departamentos);
+
+    }
+
     
 }
