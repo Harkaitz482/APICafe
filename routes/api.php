@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\LoginRegisterController;
 use App\Http\Controllers\DepartamentoController;
 use App\Http\Controllers\EspecialidadController;
+use App\Http\Controllers\DepartamentoController;  
 
 
 
@@ -51,7 +52,6 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::get('/modulos/especialidad/{especialidadId}', [ModuloController::class, 'modulosPorEspecialidad']);
         Route::get('/departamento/{departamentoId}', [DepartamentoController::class, 'show']);
         Route::get('/modulos/users/{userid}', [ModuloController::class, 'modulosPorUsuario']);
-
 
 
     });
