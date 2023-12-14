@@ -1,12 +1,9 @@
-// Función para obtener usuarios y sus módulos
 async function obtenerUsuariosYModulos() {
     const idDepartamento = sessionStorage.getItem("departamento");
     const token = sessionStorage.getItem("token");
 
     if (!idDepartamento) {
-        console.error(
-            "No se encontró el ID del departamento en el sessionStorage"
-        );
+        console.error("No se encontró el ID del departamento en el sessionStorage");
         return;
     }
 
@@ -29,13 +26,13 @@ async function obtenerUsuariosYModulos() {
         const usuarios = data.users;
         const idDepartamentoNumber = Number(idDepartamento);
 
-        const usuariosPorDepartamento = usuarios.filter(
-            (usuario) => usuario.departamento_id === idDepartamentoNumber
-        );
-
         const tbody = document.getElementById("usuarios-table-body");
 
-        for (const usuario of usuariosPorDepartamento) {
+        for (const usuario of usuarios) {
+            if (usuario.departamento_id !== idDepartamentoNumber) {
+                continue;
+            }
+
             const row = document.createElement("tr");
             const nombreCell = document.createElement("td");
             nombreCell.textContent = usuario.name;
@@ -65,16 +62,43 @@ async function obtenerUsuariosYModulos() {
             }));
 
             const modulosCell = document.createElement("td");
-            modulosCell.textContent = modulos
-                .map((modulo) => modulo.codigo)
-                .join(", ");
+            const selectModulos = document.createElement("select");
+
+            for (const modulo of modulos) {
+                const option = document.createElement("option");
+                option.value = modulo.codigo;
+                option.textContent = modulo.codigo;
+                selectModulos.appendChild(option);
+            }
+
+            const inputCargaHoraria = document.createElement("input");
+            inputCargaHoraria.type = "text";
+            inputCargaHoraria.readOnly = true;
+
+            if (modulos.length > 0) {
+                inputCargaHoraria.value = modulos[0].cargaHoraria;
+            }
+
+            selectModulos.addEventListener("change", (event) => {
+                const selectedModule = modulos.find(
+                    (modulo) => modulo.codigo === event.target.value
+                );
+
+                if (selectedModule) {
+                    inputCargaHoraria.value = selectedModule.cargaHoraria;
+                }
+            });
+
+            modulosCell.appendChild(selectModulos);
             row.appendChild(modulosCell);
 
             const cargaHorariaCell = document.createElement("td");
-            cargaHorariaCell.textContent = modulos
-                .map((modulo) => modulo.cargaHoraria)
-                .join(", ");
+            cargaHorariaCell.appendChild(inputCargaHoraria);
             row.appendChild(cargaHorariaCell);
+
+            const horasTotalesCell = document.createElement("td");
+            horasTotalesCell.textContent = await obtenerHorasTotalesPorUsuario(userId, token);
+            row.appendChild(horasTotalesCell);
 
             tbody.appendChild(row);
         }
@@ -83,18 +107,33 @@ async function obtenerUsuariosYModulos() {
     }
 }
 
-document.addEventListener("DOMContentLoaded", obtenerUsuariosYModulos);
+async function obtenerHorasTotalesPorUsuario(userId, token) {
+    const userModulesUrl = ` api/V1/modulos/users/${userId}`;
+    console.log(userModulesUrl)
+    const modulesResponse = await fetch(userModulesUrl, {
+        method: "GET",
+        headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+        },
+    });
 
-function saludo() {
-    if (nombre) {
-        const saludo = document.getElementById("saludo");
-        saludo.textContent = nombre.toUpperCase(); // Mostrar el mensaje de bienvenida con el nombre del usuario
-    } else {
-        console.log("Nombre no encontrado");
+    if (!modulesResponse.ok) {
+        throw new Error(
+            `La solicitud no fue exitosa para el usuario ${userId}`
+        );
     }
+
+    const userModules = await modulesResponse.json();
+    const modulos = userModules.modulos.map((modulo) => modulo.CargaHoraria);
+    const horasTotales = modulos.reduce((total, cargaHoraria) => total + cargaHoraria, 0);
+    return horasTotales;
 }
 
 document.addEventListener("DOMContentLoaded", obtenerUsuariosYModulos);
+
+// Resto del código para el botón de logout, obtención de token y departamento, y otras funciones
+
 
 // Obtener una referencia al botón de "logout"
 const logoutButton = document.getElementById("logout");

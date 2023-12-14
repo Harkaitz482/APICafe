@@ -12,30 +12,29 @@ use Illuminate\Support\Facades\File;
 class ModuloController extends Controller
 {
     public function index()
-    {   
+    {
         // return public_path('form');
 
-       
+
 
         // return File::get(public_path('form.html'));
         $modulos = Modulo::all();
-       
+
 
         return ModuloResource::collection($modulos);
-        
     }
 
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            
+
             'codigo' => 'required|string',
             'nombre' => 'required|string',
             'horas_semanales' => 'required|integer',
             'horas_totales' => 'required|integer',
             'user_id' => 'required|integer',
-            'especialidad_id'=>'required|integer',
-            'curso_id'=>'required|integer',
+            'especialidad_id' => 'required|integer',
+            'curso_id' => 'required|integer',
         ]);
 
         if ($validator->fails()) {
@@ -57,27 +56,28 @@ class ModuloController extends Controller
     public function update(Request $request, Modulo $modulo)
     {
         $validator = Validator::make($request->all(), [
-            
-            'codigo' => 'required|string',
-            'nombre' => 'required|string',
-            'horas_semanales' => 'required|integer',
-            'horas_totales' => 'required|integer',
+
+            'codigo' => '|string',
+            'nombre' => '|string',
+            'horas_semanales' => '|integer',
+            'horas_totales' => '|integer',
             'user_id' => 'required|integer',
-            'especialidad_id'=>'required|integer',
-            'curso_id'=>'required|integer',
+            'especialidad_id' => '|integer',
+            'curso_id' => '|integer',
+            'CargaHoraria' => 'required|string'
         ]);
 
         if ($validator->fails()) {
             return response()->json(['errors' => $validator->errors()], 422);
         }
 
-       
+
         $modulo->update($request->all());
 
         return new ModuloResource($modulo);
     }
 
-    public function destroy(Modulo $modulo )
+    public function destroy(Modulo $modulo)
     {
         // $modulo = Modulo::findOrFail($modulo);
         $modulo->delete();
@@ -91,7 +91,7 @@ class ModuloController extends Controller
         $modulos = Modulo::where('especialidad_id', $especialidadId)->get();
 
         return response()->json(['modulos' => $modulos]);
-    }   
+    }
 
     public function modulosPorUsuario($userid)
     {

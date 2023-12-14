@@ -34,6 +34,9 @@ document.getElementById("loginForm").addEventListener("submit", function (event)
             sessionStorage.setItem("Especialidad", especialidad);
             let departamento = data.data.user.departamento_id;
             sessionStorage.setItem("departamento", departamento);
+            let userId = data.data.user.id;
+            console.log(userId) 
+            sessionStorage.setItem("UserID", userId);
             // Redireccionar si el inicio de sesión es exitoso
             window.location.href = "form.html";
         })

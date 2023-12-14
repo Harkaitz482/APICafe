@@ -119,8 +119,7 @@
   /* Estilos del modal */
 .modal {
   display: none; /* Ocultar por defecto */
-  position: fixed;
-  z-index: 1;
+  position: fixed;  
   left: 0;
   top: 0;
   width: 100%;
@@ -130,7 +129,6 @@
 }
 
 .modal-content {
-  background-color: #fefefe;
   margin: 20% auto; /* Ajuste en la distancia desde la parte superior */
   padding: 15px;
   border: 1px solid #888;
