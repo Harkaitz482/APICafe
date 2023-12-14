@@ -10,7 +10,7 @@ async function obtenerUsuariosYModulos() {
         return;
     }
 
-    const todosLosUsuariosUrl = `http://apicafe.test/api/users`;
+    const todosLosUsuariosUrl = `https://prueba-i03j.onrender.com/api/users`;
 
     try {
         const response = await fetch(todosLosUsuariosUrl, {
@@ -42,7 +42,7 @@ async function obtenerUsuariosYModulos() {
             row.appendChild(nombreCell);
 
             const userId = usuario.id;
-            const userModulesUrl = `http://apicafe.test/api/V1/modulos/users/${userId}`;
+            const userModulesUrl = `https://prueba-i03j.onrender.com/api/V1/modulos/users/${userId}`;
 
             const modulesResponse = await fetch(userModulesUrl, {
                 method: "GET",
@@ -144,7 +144,7 @@ function obtenerDepartamento() {
 const departamentoId = obtenerDepartamento();
 console.log(departamentoId);
 
-const departamentoNombreUrl = `http://apicafe.test/api/V1/departamento/${departamentoId}`;
+const departamentoNombreUrl = `https://prueba-i03j.onrender.com/api/V1/departamento/${departamentoId}`;
 
 fetch(departamentoNombreUrl, {
     method: "GET",
