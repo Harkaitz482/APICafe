@@ -3,7 +3,7 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-
+use \Faker\Factory;
 use App\Models\Aula;
 use App\Models\Curso;
 use App\Models\Departamento;
@@ -23,7 +23,7 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         // DB::delete('delete from apicafe');
-        Aula::factory()->count(5)->create();
+        aula::factory()->count(5)->create();
         Curso::factory()->count(5)->create();
         User::factory()->count(5)->create();
         Departamento::factory()->count(5)->create();

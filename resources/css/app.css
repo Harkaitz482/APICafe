@@ -1,0 +1,98 @@
+.divider:after,
+.divider:before {
+content: "";
+flex: 1;
+height: 1px;
+background: #eee;
+}
+.h-custom {
+height: calc(100% - 73px);
+}
+@media (max-width: 450px) {
+.h-custom {
+height: 100%;
+}
+}
+
+.icono-majada img{
+margin-left: 20%;
+max-width: 60%;
+}
+
+
+.boton-login{
+  background-color: #1b7ddf;
+}
+
+/* Navigation Bar */
+.navbar{
+  padding: 20px 10px 20px 0px;
+  background-color: #28a7e9;
+  transition: all ease 0.4s;
+}
+.navbar-brand{
+  font-size: 22px;
+  color: white !important;
+}
+.navbar .navbar-nav li a{
+  font-size: 16px;
+  color: white;
+}
+
+/* Animation */
+.animate{
+  padding: 0px 10px 0px 0px;
+  transition: all ease 0.4s;
+}
+
+/* Jumbotron */
+.jumbotron{
+  margin-top: 110px;
+}
+
+#form-img{ 
+  height:"70px"
+}
+
+.majada-b-blanco{
+  background-color: #f6f6f6;
+}
+.majada-t-blanco{
+  color: #f6f6f6;
+}
+.majada-b-azul-claro{
+  background-color: #10abc7;
+}
+.majada-t-azul-claro{
+  color: #10abc7;
+}
+.majada-t-azul-oscuro{
+  color: #116bb8;
+}
+.majada-b-azul-oscuro{
+  background-color: #116bb8;
+}
+.majada-t-naranja{
+  color: #ea5d16;
+}
+.majada-b-naranja{
+  background-color: #ea5d16;
+}
+.majada-t-rojo{
+  color: #be1816;
+}
+.majada-b-rojo{
+  background-color: #be1816;
+}
+.majada-t-amarillo{
+  color: #f9c114;
+}
+.majada-b-amarillo{
+  background-color: #f9c114;
+}
+.tabla-width-5{
+  width:5%;
+}
+.tabla-width-15{
+  width:15%;
+}

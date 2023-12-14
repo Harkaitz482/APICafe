@@ -4,6 +4,7 @@ use App\Http\Controllers\Api\V1\ModuloController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\LoginRegisterController;
+use App\Http\Controllers\DepartamentoController;
 use App\Http\Controllers\EspecialidadController;
 use App\Http\Controllers\DepartamentoController;  
 
@@ -52,6 +53,7 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::get('/departamento/{departamentoId}', [DepartamentoController::class, 'show']);
         Route::get('/modulos/users/{userid}', [ModuloController::class, 'modulosPorUsuario']);
 
+
     });
 });
 
@@ -61,6 +63,7 @@ Route::controller(LoginRegisterController::class)->group(function () {
     Route::post('/login', 'login');
     Route::post('/logout','logout');
     Route::get('/users', [LoginRegisterController::class, 'show']);
-    
 
 });
+
+

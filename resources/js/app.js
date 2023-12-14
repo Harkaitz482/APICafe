@@ -97,6 +97,7 @@ function obtenerToken() {
     }
 }
 
+// Ejemplo de uso:
 const token = obtenerToken();
 
 function obtenerEspecialidad() {
@@ -114,13 +115,15 @@ function obtenerEspecialidad() {
     }
 }
 
+// Ejemplo de uso:
 const especialidadId = obtenerEspecialidad();
-console.log(especialidadId);
+console.log(especialidadId)
+
 
 // Verificar si el token existe
 
 // URL de la API que proporciona la información de los módulos
-const apiUrl = `https://prueba-i03j.onrender.com/api/V1/modulos/especialidad/${especialidadId}`;
+const apiUrl = `http://apicafe.test/api/V1/modulos/especialidad/${especialidadId}`;
 fetch(apiUrl, {
     method: "GET",
     headers: {
@@ -136,7 +139,7 @@ fetch(apiUrl, {
     .then((result) => {
         const modulos = result.modulos;
         console.log(modulos);
-
+    
         if (Array.isArray(modulos) && modulos.length > 0) {
             modulos.forEach((modulo) => {
                 const option = document.createElement("option");
@@ -146,14 +149,14 @@ fetch(apiUrl, {
                 sessionStorage.setItem("modulo", modulo.id);
             });
         } else {
-            console.error(
-                "El arreglo 'modulos' está vacío o no contiene elementos"
-            );
+            console.error("El arreglo 'modulos' está vacío o no contiene elementos");
         }
+
     })
     .catch((error) => {
         console.error("Error al obtener datos de la API:", error);
     });
+
 
 // Función para manejar el logout
 
@@ -375,17 +378,14 @@ inputHoras.addEventListener("input", actualizarResultados);
 if (inputHoras.value !== "") {
     actualizarResultados();
 }
+
 function mostrarBotonDepartamento() {
     // Verificar si el sessionStorage es compatible con el navegador y obtener el tipo de usuario
     if (typeof Storage !== "undefined") {
         const tipoUsuario = sessionStorage.getItem("TipoUsuario");
-        console.log(tipoUsuario);
 
-        // Verificar si el tipo de usuario es "Jefe de estudios" o "Jefe de departamento"
-        if (
-            tipoUsuario === "jefe de departamento" ||
-            tipoUsuario === "jefe de departamento"
-        ) {
+        // Verificar si el tipo de usuario es "jefe de departamento"
+        if (tipoUsuario === "Jefe de estudios") {
             // Crear un botón para el departamento
             const botonDepartamento = document.createElement("button");
             botonDepartamento.textContent = "Gestionar";
@@ -394,11 +394,10 @@ function mostrarBotonDepartamento() {
                 "btn-outline-primary",
                 "me-2"
             ); // Ajustar clases según el estilo deseado
-
-            // Agregar funcionalidad al botón: redirigir al hacer clic en el botón
+            // Agregar funcionalidad al botón (puede ser un evento 'click', por ejemplo)
             botonDepartamento.addEventListener("click", function () {
-                window.location.href = "jefeDeparta.html";
-                // Cambiar "jefedepartamento.html" por la URL correcta a la que deseas redirigir
+                // Colocar aquí la lógica a realizar al hacer clic en el botón
+                // Por ejemplo, redirigir a una página de gestión de departamentos, etc.
             });
 
             // Obtener el contenedor para los botones del encabezado
@@ -406,25 +405,7 @@ function mostrarBotonDepartamento() {
 
             // Agregar el botón del departamento al contenedor
             botonesHeader.appendChild(botonDepartamento);
-        }
-    }
-}
-
-document.addEventListener("DOMContentLoaded", function () {
-    mostrarBotonDepartamento();
-});
-
-function mostrarBotonJefeDeEstudios() {
-    // Verificar si el sessionStorage es compatible con el navegador y obtener el tipo de usuario
-    if (typeof Storage !== "undefined") {
-        const tipoUsuario = sessionStorage.getItem("TipoUsuario");
-
-        // Verificar si el tipo de usuario es "Jefe de estudios" o "Jefe de departamento"
-        if (
-            tipoUsuario === "Jefe de estudios" ||
-            tipoUsuario === "Jefe de departamento"
-        ) {
-            // Crear un botón para el departamento
+        } else if (tipoUsuario === "Jefe de departamento") {
             const botonDepartamento = document.createElement("button");
             botonDepartamento.textContent = "Gestionar";
             botonDepartamento.classList.add(
@@ -432,124 +413,12 @@ function mostrarBotonJefeDeEstudios() {
                 "btn-outline-primary",
                 "me-2"
             ); // Ajustar clases según el estilo deseado
-
-            // Agregar funcionalidad al botón: redirigir al hacer clic en el botón
-            botonDepartamento.addEventListener("click", function () {
-                window.location.href = "jefeDeEstudio.html";
-                // Cambiar "jefedepartamento.html" por la URL correcta a la que deseas redirigir
-            });
-
-            // Obtener el contenedor para los botones del encabezado
-            const botonesHeader = document.getElementById("botonesHeader");
-
-            // Agregar el botón del departamento al contenedor
-            botonesHeader.appendChild(botonDepartamento);
+            // Agregar funcionalidad al botón (puede ser un evento 'click', por ejemplo)
         }
     }
 }
 
 // Llamar a la función para mostrar el botón del departamento cuando sea necesario
 document.addEventListener("DOMContentLoaded", function () {
-    mostrarBotonJefeDeEstudios();
+    mostrarBotonDepartamento();
 });
-
-const especialidadNombreUrl = `http://apicafe.test/api/V1/especialidades/${especialidadId}`;
-
-fetch(especialidadNombreUrl, {
-    method: "GET",
-    headers: {
-        Authorization: `Bearer ${token}`,
-        "Content-Type": "application/json",
-    },
-})
-    .then((response) => {
-        if (!response.ok) {
-            throw new Error("La solicitud no fue exitosa");
-        }
-        return response.json();
-    })
-    .then((result) => {
-        const nombreEspecialidad = result.data.nombre; // Asegúrate de que el campo "nombre" sea el correcto
-        const informacionDiv = document.getElementById("informacion");
-
-        informacionDiv.textContent = `Especialidad: ${nombreEspecialidad}`;
-        // O puedes utilizar innerHTML si quieres insertar HTML
-        // informacionDiv.innerHTML = `Especialidad: ${nombreEspecialidad}`;
-    })
-    .catch((error) => {
-        console.error("Error al obtener datos de la API:", error);
-    });
-
-function obtenerDepartamento() {
-    // Verificar si el sessionStoragre es compatible con el navegador
-    if (typeof Storage !== "undefined") {
-        // Obtener el token almacenado en el sessionStoragre
-        const departamento = sessionStorage.getItem("departamento");
-
-        // Verificar si el token existe
-        if (departamento) {
-            return departamento; // Devolver el valor del token
-        } else {
-            return null; // Devolver null si no se encuentra el token
-        }
-    }
-}
-
-const departamentoId = obtenerDepartamento();
-console.log(departamentoId);
-
-const departamentoNombreUrl = `http://apicafe.test/api/V1/departamento/${departamentoId}`;
-
-fetch(departamentoNombreUrl, {
-    method: "GET",
-    headers: {
-        Authorization: `Bearer ${token}`,
-        "Content-Type": "application/json",
-    },
-})
-    .then((response) => {
-        if (!response.ok) {
-            throw new Error("La solicitud no fue exitosa");
-        }
-        return response.json();
-    })
-    .then((result) => {
-        console.log(result); // Imprime toda la respuesta para revisar su estructura
-
-        const departamento = result.departamento; // Accede al objeto 'departamento'
-        if (departamento && departamento.nombre) {
-            const nombreDepartamento = departamento.nombre;
-            console.log(nombreDepartamento);
-            const informacionDiv = document.getElementById(
-                "informacionDepartamento"
-            );
-            informacionDiv.textContent = `Departamento: ${nombreDepartamento}`;
-        } else {
-            console.error(
-                "No se encontró el nombre del departamento en los datos recibidos"
-            );
-        }
-    });
-
-function obtenerCurso() {
-    const fechaActual = new Date();
-    const mesActual = fechaActual.getMonth() + 1;
-    const añoActual = fechaActual.getFullYear();
-
-    let curso = añoActual;
-
-    if (mesActual >= 9) {
-        curso = `${añoActual}/${añoActual + 1}`;
-    } else {
-        curso = `${añoActual - 1}/${añoActual}`;
-    }
-
-    return curso;
-}
-
-// Obtener el elemento HTML con el ID "curso"
-const cursoElemento = document.getElementById("curso");
-
-// Obtener el curso y asignarlo al contenido del elemento HTML
-const cursoActual = obtenerCurso();
-cursoElemento.textContent ="Curso: " + cursoActual;
