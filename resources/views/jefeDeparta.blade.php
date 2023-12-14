@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Usuarios y Módulos</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="./css/app.css">
+    <link rel="stylesheet" href="css/app.css">
     <style>
         /* Estilo personalizado para la tabla */
         .table-bordered {
@@ -48,6 +48,6 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script type="module" src="./js/jefeDeparta.js"></script>
+    <script  src="js/jefeDeparta.js"></script>
 </body>
 </html>

@@ -7,7 +7,7 @@
             rel="stylesheet"
             href="https://cdn.jsdelivr.net/npm/bootstrap/dist/css/bootstrap.min.css"
         />
-        <link rel="stylesheet" href="./css/app.css" />
+        <link rel="stylesheet" href="css/app.css" />
         <title>Formulario</title>
     </head>
 
@@ -253,6 +253,6 @@
             </div>
         </div>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap/dist/js/bootstrap.min.js"></script>
-        <script type="module" src="./js/app.js"></script>
+        <script src="js/app.js"></script>
     </body>
 </html>

@@ -20,16 +20,25 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('index');
+});
+Route::get('/formulario', function () {
+    return view('form');
+});
+
+Route::get('/JefeEstudios', function () {
+    return view('jefeDeEstudio');
+});
+Route::get('/JefeDepart', function () {
+    return view('jefeDeparta');
 });
 
 
 
 
+// Route::get('/form', [App\Http\Controllers\Api\V1\ModuloController::class, 'index']);
 
-Route::get('/form', [App\Http\Controllers\Api\V1\ModuloController::class, 'index']);
-
-Route::post('/login', [App\Http\Controllers\Auth\LoginRegisterController::class, 'login']);
+// Route::post('/login', [App\Http\Controllers\Auth\LoginRegisterController::class, 'login']);
 
 
 Route::get('/jefe-estudios/modulos', [JefeEstudiosController::class, 'index']);

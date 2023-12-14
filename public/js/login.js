@@ -36,7 +36,7 @@ document.getElementById("loginForm").addEventListener("submit", function (event)
             let departamento = data.data.user.departamento_id;
             sessionStorage.setItem("departamento", departamento);
             // Redireccionar si el inicio de sesión es exitoso
-            window.location.href = "form.html";
+            window.location.href = "/formulario";
         })
         .catch((error) => {
             console.error("Error:", error.message);

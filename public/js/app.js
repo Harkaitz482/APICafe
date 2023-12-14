@@ -166,7 +166,7 @@ logoutButton.addEventListener("click", function () {
     sessionStorage.removeItem("token"); // Cambia 'token' por el nombre de tu clave de sesión
 
     // Redireccionar a la página de inicio de sesión
-    window.location.href = "index.html"; // Cambia '/login' por la URL de tu página de inicio de sesión
+    window.location.href = "/"; // Cambia '/login' por la URL de tu página de inicio de sesión
 });
 // Obtener referencia al select y al contenedor de horas
 
@@ -177,7 +177,7 @@ const turnoInput = document.getElementById("turno");
 const aulaInput = document.getElementById("aula");
 
 function mostrarHoras(moduloId) {
-    const apiUrlHoras = `api/V1/modulos/${moduloId}`;
+    const apiUrlHoras = `https://prueba-i03j.onrender.com/api/V1/modulos/${moduloId}`;
 
     fetch(apiUrlHoras, {
         method: "GET",
@@ -397,7 +397,7 @@ function mostrarBotonDepartamento() {
 
             // Agregar funcionalidad al botón: redirigir al hacer clic en el botón
             botonDepartamento.addEventListener("click", function () {
-                window.location.href = "jefeDeparta.html";
+                window.location.href = "/JefeDepart";
                 // Cambiar "jefedepartamento.html" por la URL correcta a la que deseas redirigir
             });
 
