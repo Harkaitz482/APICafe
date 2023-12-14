@@ -530,3 +530,26 @@ fetch(departamentoNombreUrl, {
             );
         }
     });
+
+function obtenerCurso() {
+    const fechaActual = new Date();
+    const mesActual = fechaActual.getMonth() + 1;
+    const añoActual = fechaActual.getFullYear();
+
+    let curso = añoActual;
+
+    if (mesActual >= 9) {
+        curso = `${añoActual}/${añoActual + 1}`;
+    } else {
+        curso = `${añoActual - 1}/${añoActual}`;
+    }
+
+    return curso;
+}
+
+// Obtener el elemento HTML con el ID "curso"
+const cursoElemento = document.getElementById("curso");
+
+// Obtener el curso y asignarlo al contenido del elemento HTML
+const cursoActual = obtenerCurso();
+cursoElemento.textContent ="Curso: " + cursoActual;
