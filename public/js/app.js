@@ -453,7 +453,7 @@ document.addEventListener("DOMContentLoaded", function () {
     mostrarBotonJefeDeEstudios();
 });
 
-const especialidadNombreUrl = `http://apicafe.test/api/V1/especialidades/${especialidadId}`;
+const especialidadNombreUrl = `https://prueba-i03j.onrender.com/api/V1/especialidades/${especialidadId}`;
 
 fetch(especialidadNombreUrl, {
     method: "GET",
@@ -498,7 +498,7 @@ function obtenerDepartamento() {
 const departamentoId = obtenerDepartamento();
 console.log(departamentoId);
 
-const departamentoNombreUrl = `http://apicafe.test/api/V1/departamento/${departamentoId}`;
+const departamentoNombreUrl = `https://prueba-i03j.onrender.com/api/V1/departamento/${departamentoId}`;
 
 fetch(departamentoNombreUrl, {
     method: "GET",
