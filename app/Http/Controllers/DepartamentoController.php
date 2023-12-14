@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 use App\Http\Requests\DepartamentoRequest;
 use App\Http\Resources\DepartamentoResource;
 use App\Models\Departamento;
+use App\Models\User;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+
 
 class DepartamentoController extends Controller
 {
@@ -80,4 +82,13 @@ class DepartamentoController extends Controller
 
         return response()->json(['message' => 'Departamento eliminado con éxito']);
     }
+
+    public function todos(Departamento $departamentos){
+        $departamentos = Departamento::all();
+
+        return response()->json($departamentos);
+
+    }
+
+    
 }

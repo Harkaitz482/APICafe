@@ -1,5 +1,3 @@
-let moduloIdSeleccionado;
-
 document.addEventListener("DOMContentLoaded", function () {
     const calcularBtn = document.getElementById("calcular");
     const horasTotalesElement = document.getElementById("horastotales");
@@ -14,8 +12,6 @@ document.addEventListener("DOMContentLoaded", function () {
             if (!isNaN(parseInt(input.value))) {
                 horasTotales += parseInt(input.value);
             }
-
-            enviarCambios();
         });
 
         horasTotalesElement.textContent = horasTotales;
@@ -55,8 +51,6 @@ document.addEventListener("DOMContentLoaded", function () {
             console.log("No hay tablas para eliminar.");
         }
     });
-
-    // Manejar el error, mostrar mensajes, etc.
 });
 
 const selectModulo = document.querySelector(
@@ -182,10 +176,8 @@ const horasInput = document.getElementById("horas");
 const turnoInput = document.getElementById("turno");
 const aulaInput = document.getElementById("aula");
 
-let moduloSeleccionado;
-
 function mostrarHoras(moduloId) {
-    const apiUrlHoras = `api/V1/modulos/${moduloId}`;
+    const apiUrlHoras = `https://prueba-i03j.onrender.com/api/V1/modulos/${moduloId}`;
 
     fetch(apiUrlHoras, {
         method: "GET",
@@ -219,6 +211,7 @@ function mostrarHoras(moduloId) {
                     // Asignar las opciones al elemento select
                     resultadosElement.innerHTML = selectOptions.join("");
                 }
+
                 const dataCurso = result.data.curso;
                 if (data.curso && data.curso.turno) {
                     turnoInput.value = data.curso.turno;
@@ -241,45 +234,11 @@ function mostrarHoras(moduloId) {
             console.error("Error al obtener datos de la API:", error);
         });
 }
+
 selectModulo.addEventListener("change", function (event) {
-    moduloIdSeleccionado = event.target.value;
+    const moduloIdSeleccionado = event.target.value;
     mostrarHoras(moduloIdSeleccionado);
 });
-function enviarCambios() {
-    const userId = obtenerUserID(); // Asegúrate de tener una función que devuelva el user_id
-    const cargaHorariaElement = document.getElementById("resultadosElement");
-    const cargaHoraria = cargaHorariaElement.options[cargaHorariaElement.selectedIndex].text; // Obtener el texto de la opción seleccionada
-    const dataToUpdate = {
-        user_id: userId,
-        CargaHoraria: cargaHoraria,
-    };
-    console.log(dataToUpdate);
-    // URL de la API para actualizar los datos
-    const putUrl = `http://apicafe.test/api/V1/modulos/${moduloIdSeleccionado}`; // Ajusta la URL según la estructura de tu API
-    console.log(putUrl);
-    // Realizar el fetch con el método PUT
-    fetch(putUrl, {
-        method: "PUT",
-        headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`, // Asegúrate de tener el token definido
-        },
-        body: JSON.stringify(dataToUpdate),
-    })
-        .then((response) => {
-            if (!response.ok) {
-                throw new Error("Error al actualizar los datos");
-            }
-            return response.json();
-        })
-        .then((data) => {
-            console.log("Datos actualizados:", data);
-            // Aquí puedes realizar acciones adicionales después de la actualización, si es necesario
-        })
-        .catch((error) => {
-            console.error("Error:", error);
-        });
-}
 
 function crearCampos() {
     const nuevoDiv = document.createElement("div");
@@ -593,19 +552,4 @@ const cursoElemento = document.getElementById("curso");
 
 // Obtener el curso y asignarlo al contenido del elemento HTML
 const cursoActual = obtenerCurso();
-cursoElemento.textContent = "Curso: " + cursoActual;
-
-function obtenerUserID() {
-    // Verificar si el sessionStoragre es compatible con el navegador
-    if (typeof Storage !== "undefined") {
-        // Obtener el token almacenado en el sessionStoragre
-        const user = sessionStorage.getItem("UserID");
-
-        // Verificar si el token existe
-        if (user) {
-            return user; // Devolver el valor del token
-        } else {
-            return null; // Devolver null si no se encuentra el token
-        }
-    }
-}
+cursoElemento.textContent ="Curso: " + cursoActual;

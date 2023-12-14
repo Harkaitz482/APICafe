@@ -85,13 +85,13 @@ class ModuloController extends Controller
         return response()->json(null, 204);
     }
 
-    public function modulosPorEspecialidad($especialidadId)
+    public function modulosPorEspecialidad($especialidadid)
     {
         // Obtén todos los módulos que tienen la especialidad_id proporcionada
-        $modulos = Modulo::where('especialidad_id', $especialidadId)->get();
+        $modulos = Modulo::where('especialidad_id', $especialidadid)->get();
 
         return response()->json(['modulos' => $modulos]);
-    }
+    }   
 
     public function modulosPorUsuario($userid)
     {
@@ -99,5 +99,6 @@ class ModuloController extends Controller
         $modulos = Modulo::where('user_id', $userid)->get();
 
         return response()->json(['modulos' => $modulos]);
-    }
+    }   
+
 }

@@ -48,9 +48,12 @@ Route::middleware('auth:sanctum')->group(function () {
         //     });
 
         Route::get('/especialidades/{especialidad}', [EspecialidadController::class,'show']);
-        Route::get('/modulos/especialidad/{especialidadId}', [ModuloController::class, 'modulosPorEspecialidad']);
+        Route::get('/modulos/especialidad/{especialidadid}', [ModuloController::class, 'modulosPorEspecialidad']);
         Route::get('/departamento/{departamentoId}', [DepartamentoController::class, 'show']);
         Route::get('/modulos/users/{userid}', [ModuloController::class, 'modulosPorUsuario']);
+        Route::get('/departamentos', [DepartamentoController::class, 'todos']);
+
+
 
     });
 });
@@ -61,6 +64,7 @@ Route::controller(LoginRegisterController::class)->group(function () {
     Route::post('/login', 'login');
     Route::post('/logout','logout');
     Route::get('/users', [LoginRegisterController::class, 'show']);
-    
 
 });
+
+

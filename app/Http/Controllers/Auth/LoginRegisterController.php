@@ -23,8 +23,8 @@ class LoginRegisterController extends Controller
             'name' => 'required|string|max:250',
             'email' => 'required|string|email:rfc,dns|max:250|unique:users,email',
             'password' => 'required|string|min:8|confirmed',
-            'especialidad_id'=> 'required|string',
-            'departamento_id'=> 'required|string'
+            'especialidad_id'=> 'required|integer',
+            'departamento_id'=> 'required|integer'
         ]);
 
         if($validate->fails()){

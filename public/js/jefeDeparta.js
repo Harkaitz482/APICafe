@@ -7,7 +7,7 @@ async function obtenerUsuariosYModulos() {
         return;
     }
 
-    const todosLosUsuariosUrl = `http://apicafe.test/api/users`;
+    const todosLosUsuariosUrl = `https://prueba-i03j.onrender.com/api/users`;
 
     try {
         const response = await fetch(todosLosUsuariosUrl, {
@@ -39,7 +39,7 @@ async function obtenerUsuariosYModulos() {
             row.appendChild(nombreCell);
 
             const userId = usuario.id;
-            const userModulesUrl = `http://apicafe.test/api/V1/modulos/users/${userId}`;
+            const userModulesUrl = `https://prueba-i03j.onrender.com/api/V1/modulos/users/${userId}`;
 
             const modulesResponse = await fetch(userModulesUrl, {
                 method: "GET",
@@ -144,7 +144,7 @@ logoutButton.addEventListener("click", function () {
     sessionStorage.removeItem("token"); // Cambia 'token' por el nombre de tu clave de sesión
 
     // Redireccionar a la página de inicio de sesión
-    window.location.href = "index.html"; // Cambia '/login' por la URL de tu página de inicio de sesión
+    window.location.href = "/"; // Cambia '/login' por la URL de tu página de inicio de sesión
 });
 // Obtener referencia al select y al contenedor de horas
 
@@ -183,7 +183,7 @@ function obtenerDepartamento() {
 const departamentoId = obtenerDepartamento();
 console.log(departamentoId);
 
-const departamentoNombreUrl = `http://apicafe.test/api/V1/departamento/${departamentoId}`;
+const departamentoNombreUrl = `https://prueba-i03j.onrender.com/api/V1/departamento/${departamentoId}`;
 
 fetch(departamentoNombreUrl, {
     method: "GET",

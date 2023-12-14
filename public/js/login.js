@@ -9,7 +9,8 @@ document.getElementById("loginForm").addEventListener("submit", function (event)
         password: password,
     };
 
-    fetch("http://apicafe.test/api/login", {
+
+    fetch("https://prueba-i03j.onrender.com/api/login", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -38,7 +39,7 @@ document.getElementById("loginForm").addEventListener("submit", function (event)
             console.log(userId) 
             sessionStorage.setItem("UserID", userId);
             // Redireccionar si el inicio de sesión es exitoso
-            window.location.href = "form.html";
+            window.location.href = "/formulario";
         })
         .catch((error) => {
             console.error("Error:", error.message);
