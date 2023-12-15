@@ -57,13 +57,13 @@ class ModuloController extends Controller
     {
         $validator = Validator::make($request->all(), [
 
-            'codigo' => '|string',
-            'nombre' => '|string',
-            'horas_semanales' => '|integer',
-            'horas_totales' => '|integer',
+            'codigo' => 'string',
+            'nombre' => 'string',
+            'horas_semanales' => 'integer',
+            'horas_totales' => 'integer',
             'user_id' => 'required|integer',
-            'especialidad_id' => '|integer',
-            'curso_id' => '|integer',
+            'especialidad_id' => 'integer',
+            'curso_id' => 'integer',
             'CargaHoraria' => 'required|string'
         ]);
 

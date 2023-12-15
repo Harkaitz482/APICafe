@@ -108,7 +108,7 @@ async function obtenerUsuariosYModulos() {
 }
 
 async function obtenerHorasTotalesPorUsuario(userId, token) {
-    const userModulesUrl = ` api/V1/modulos/users/${userId}`;
+    const userModulesUrl = `https://prueba-i03j.onrender.com/api/V1/modulos/users/${userId}`;
     console.log(userModulesUrl)
     const modulesResponse = await fetch(userModulesUrl, {
         method: "GET",

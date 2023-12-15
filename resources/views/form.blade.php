@@ -7,7 +7,7 @@
             rel="stylesheet"
             href="https://cdn.jsdelivr.net/npm/bootstrap/dist/css/bootstrap.min.css"
         />
-        <link rel="stylesheet" href="css/app.css" />
+        <link rel="stylesheet" href="./css/app.css" />
         <title>Formulario</title>
     </head>
 

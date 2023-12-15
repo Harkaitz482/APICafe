@@ -185,7 +185,7 @@ const aulaInput = document.getElementById("aula");
 let moduloSeleccionado;
 
 function mostrarHoras(moduloId) {
-    const apiUrlHoras = `api/V1/modulos/${moduloId}`;
+    const apiUrlHoras = `https://prueba-i03j.onrender.com/api/V1/modulos/${moduloId}`;
 
     fetch(apiUrlHoras, {
         method: "GET",
@@ -255,7 +255,7 @@ function enviarCambios() {
     };
     console.log(dataToUpdate);
     // URL de la API para actualizar los datos
-    const putUrl = `http://apicafe.test/api/V1/modulos/${moduloIdSeleccionado}`; // Ajusta la URL según la estructura de tu API
+    const putUrl = `https://prueba-i03j.onrender.com/api/V1/modulos/${moduloIdSeleccionado}`; // Ajusta la URL según la estructura de tu API
     console.log(putUrl);
     // Realizar el fetch con el método PUT
     fetch(putUrl, {
@@ -476,7 +476,7 @@ function mostrarBotonJefeDeEstudios() {
 
             // Agregar funcionalidad al botón: redirigir al hacer clic en el botón
             botonDepartamento.addEventListener("click", function () {
-                window.location.href = "jefeDeEstudio.html";
+                window.location.href = "/JefeEstudios";
                 // Cambiar "jefedepartamento.html" por la URL correcta a la que deseas redirigir
             });
 
