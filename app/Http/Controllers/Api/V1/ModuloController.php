@@ -101,4 +101,13 @@ class ModuloController extends Controller
         return response()->json(['modulos' => $modulos]);
     }   
 
+    public function mostrarDatosAula($aulaId)
+    {
+        // Obtén los datos del aula por ID
+        $datosAula = Modulo::where('aula_id', $aulaId)->first();
+
+        // Puedes pasar los datos a una vista o devolverlos como respuesta JSON, según tus necesidades
+         return response()->json($datosAula);
+    }
+
 }

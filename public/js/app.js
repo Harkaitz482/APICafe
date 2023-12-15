@@ -607,5 +607,7 @@ function obtenerUserID() {
         } else {
             return null; // Devolver null si no se encuentra el token
         }
+
+        
     }
 }

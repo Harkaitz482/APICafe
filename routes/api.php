@@ -52,6 +52,8 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::get('/departamento/{departamentoId}', [DepartamentoController::class, 'show']);
         Route::get('/modulos/users/{userid}', [ModuloController::class, 'modulosPorUsuario']);
         Route::get('/departamentos', [DepartamentoController::class, 'todos']);
+        Route::get('/modulos/aula/{aulaId}', [ModuloController::class, 'mostrarDatosAula']);
+
 
 
 

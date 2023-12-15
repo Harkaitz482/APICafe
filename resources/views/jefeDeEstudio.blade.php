@@ -254,6 +254,6 @@
             </div>
         </div>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap/dist/js/bootstrap.min.js"></script>
-        <script type="module" src="./js/jefedeEstudio.js"></script>
+        <script type="module" src="js/jefedeEstudio.js"></script>
     </body>
 </html>
