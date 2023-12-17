@@ -74,9 +74,12 @@
         <div
             class="d-flex flex-column flex-md-row text-center text-md-start justify-content-between py-4 px-4 px-xl-5 boton-login">
             <!-- Copyright -->
-            <div class="text-white mb-3 mb-md-0">
-                Copyright © 2023
-            </div>
+            <footer class="footer mt-auto py-3 bg-light">
+                <div class="container text-center">
+                    <img src="./file/logo/descarga.png" alt="cmm" width="5%">
+                    <span class="text-muted">©  Aridane Cabrera Ramirez y Harkaitz Trujillo Corrales. Todos los derechos reservados.</span>
+                </div>
+            </footer>
         </div>
     </section>
 

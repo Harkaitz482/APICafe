@@ -140,11 +140,12 @@ class LoginRegisterController extends Controller
         // Validar los datos del formulario
         $validator = Validator::make($request->all(), [
             // Definir reglas de validación para los campos del formulario
-            'name' => 'required|string|max:250',
-            'email' => 'required|string|email:rfc,dns|max:250|unique:users,email',
-            'password' => 'required|string|min:8|confirmed',
-            'especialidad_id'=> 'required|integer',
-            'departamento_id'=> 'required|integer'
+            'name' => 'string|max:250',
+            'email' => 'string|email:rfc,dns|max:250|unique:users,email',
+            'password' => 'min:8|confirmed',
+            'especialidad_id'=> 'integer',
+            'departamento_id'=> 'integer',
+            'horasTotales' => 'integer'
         ]);
     
         // Manejar errores de validación

@@ -617,15 +617,15 @@ function obtenerUserID() {
     // Obtener referencia al botón con ID "informacion"
     // Obtener referencia al botón con ID "informacion"
 
-    // Obtener el botón de información
-    const botonInformacion = document.getElementById('botonInformacion');
+    // Obtener el botón de informaciónconst botonInformacion = document.getElementById('botonInformacion');
 
-    // Agregar un evento de clic al botón para abrir el modal
-    botonInformacion.addEventListener('click', function() {
-        // Utilizar Bootstrap para mostrar el modal
-        var modal = new bootstrap.Modal(document.getElementById('modalInformacion'));
-        modal.show();
-    });
+// Agregar un evento de clic al botón para abrir el modal
+botonInformacion.addEventListener('click', function() {
+    // Utilizar Bootstrap para mostrar el modal
+    var modal = new bootstrap.Modal(document.getElementById('modalInformacion'));
+    modal.show();
+});
+
 
 
 

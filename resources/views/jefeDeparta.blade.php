@@ -49,6 +49,13 @@
         </div>
     </div>
 
+    <footer class="footer mt-auto py-3 bg-light">
+        <div class="container text-center">
+            <img src="./file/logo/descarga.png" alt="cmm" width="5%">
+            <span class="text-muted">©  Aridane Cabrera Ramirez y Harkaitz Trujillo Corrales. Todos los derechos reservados.</span>
+        </div>
+    </footer>
+    
     <script src="https://cdn.jsdelivr.net/npm/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script  src="js/jefeDeparta.js"></script>
 </body>

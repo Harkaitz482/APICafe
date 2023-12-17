@@ -17,15 +17,28 @@ async function obtenerAulas() {
 
         const data = await response.json();
         const aulas = data;
+
         const aulasContainer = document.getElementById("aulas-container");
+        const row = document.createElement("div");
+        row.classList.add(
+            "row",
+            "row-cols-1",
+            "row-cols-md-1",
+            "row-cols-lg-3"
+        ); // Divide en columnas para distintos tamaños de pantalla
 
         aulas.forEach((aula, index) => {
             const col = document.createElement("div");
-            col.classList.add("col-md-4", "mb-4"); // Tamaño de columna para mostrar en 3 columnas
+            col.classList.add("col", "mb-4"); // Elimina la clase "col-md-4" para dejar que Bootstrap maneje las columnas
 
             const card = document.createElement("div");
-            card.classList.add("card", "border", "border-dark", "border-2"); // Borde negro de 2px
-            // Añade clases de borde a tu elección, como 'border', 'border-dark', 'border-2'
+            card.classList.add(
+                "card",
+                "border",
+                "border-dark",
+                "border-2",
+                "h-100"
+            ); // Estilo de card, incluyendo la altura
 
             const cardBody = document.createElement("div");
             cardBody.classList.add("card-body", "text-center");
@@ -38,8 +51,11 @@ async function obtenerAulas() {
             card.appendChild(cardBody);
 
             const verButton = document.createElement("button");
-            verButton.textContent = "Ver";
+            verButton.textContent = "Ver más";
             verButton.classList.add("btn", "btn-primary", "mt-3");
+            verButton.textContent = "Ver";
+            verButton.classList.add("btn", "btn-primary", "mt-1", "btn-sm");
+
             verButton.addEventListener("click", async () => {
                 try {
                     const modulosUrl = `https://prueba-i03j.onrender.com/api/V1/modulos/aula/${aula.id}`;
@@ -65,8 +81,6 @@ async function obtenerAulas() {
                     const modalCursos = construirModalCursos(cursos);
                     document.body.appendChild(modalCursos);
                     const modalElement = document.getElementById("modalCursos");
-
-
                 } catch (error) {
                     console.error("Error al obtener módulos del aula:", error);
                 }
@@ -74,7 +88,11 @@ async function obtenerAulas() {
 
             card.appendChild(verButton);
             aulasContainer.appendChild(card);
+            col.appendChild(card);
+            row.appendChild(col);
         });
+
+        aulasContainer.appendChild(row);
     } catch (error) {
         console.error("Error al obtener aulas:", error);
     }
@@ -86,7 +104,7 @@ document.addEventListener("DOMContentLoaded", obtenerAulas);
 
 async function obtenerCursosPorAula(aulaId) {
     const token = sessionStorage.getItem("token");
-    const cursosUrl = `https://prueba-i03j.onrender.com/api/V1/modulos/aula/${aulaId}`;
+    const cursosUrl = `https://prueba-i03j.onrender.com/api/V1/modulos/users/${userId}`;
     console.log(cursosUrl);
 
     try {
@@ -110,10 +128,9 @@ async function obtenerCursosPorAula(aulaId) {
     }
 }
 
-
-async function obtenerUsuarioPorId(userId) {
+async function obtenerUsuarioPorId() {
     const token = sessionStorage.getItem("token");
-    const usuarioUrl = `https://prueba-i03j.onrender.com/api/V1/modulos/users/${userId}`;
+    const usuarioUrl = `http://apicafe.test/api/user`;
 
     try {
         const response = await fetch(usuarioUrl, {
@@ -129,6 +146,7 @@ async function obtenerUsuarioPorId(userId) {
         }
 
         const data = await response.json();
+        console.log(data);
         return data.name; // Suponiendo que 'nombre' es el campo que contiene el nombre del usuario
     } catch (error) {
         console.error("Error al obtener usuario por ID:", error);
@@ -179,15 +197,21 @@ function construirModalCursos(curso) {
     }
 
     if (curso) {
-        const camposAMostrar = ['codigo', 'nombre', 'horas_semanales', 'CargaHoraria', 'user_id'];
+        const camposAMostrar = [
+            "codigo",
+            "nombre",
+            "horas_semanales",
+            "CargaHoraria",
+
+        ];
         const listaCursos = document.createElement("ul");
         listaCursos.classList.add("list-group");
 
-        camposAMostrar.forEach(async campo => {
+        camposAMostrar.forEach(async (campo) => {
             const valorCampo = curso[campo];
             const listItem = document.createElement("li");
             listItem.classList.add("list-group-item");
-            if (campo === 'user_id') {
+            if (campo === "user_id") {
                 listItem.textContent = `${campo}: `;
                 listaCursos.appendChild(listItem);
                 await mostrarNombreUsuario(valorCampo);
@@ -216,13 +240,12 @@ function construirModalCursos(curso) {
     return modal;
 }
 
-
 const departamentoButton = document.getElementById("departamento");
-console.log()
+console.log();
 // Agregar un evento de clic al botón
 departamentoButton.addEventListener("click", function () {
     // Redireccionar a la página de inicio de sesión
-    window.location.href = "/JefeEstudios"; // Cambia '/login' por la URL de tu página de inicio de sesión
+    window.location.href = "jefeDeEstudio.html"; // Cambia '/login' por la URL de tu página de inicio de sesión
 });
 
 const logoutButton = document.getElementById("logout");
@@ -233,5 +256,5 @@ logoutButton.addEventListener("click", function () {
     sessionStorage.removeItem("token"); // Cambia 'token' por el nombre de tu clave de sesión
 
     // Redireccionar a la página de inicio de sesión
-    window.location.href = "/index"; // Cambia '/login' por la URL de tu página de inicio de sesión
+    window.location.href = "index.html"; // Cambia '/login' por la URL de tu página de inicio de sesión
 });

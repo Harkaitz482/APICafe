@@ -70,7 +70,7 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="js/usuarioDepart.js"></script>
+    <script type="module" src="./js/usuarioDepart.js"></script>
 </body>
 </html>
 

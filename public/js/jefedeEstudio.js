@@ -20,7 +20,9 @@ async function obtenerDepartamentos() {
         // Acceder a la lista de módulos dentro de 'data'
         const departamentos = data;
         console.log(departamentos);
-        const departamentoContainer = document.getElementById("departamentos-container");
+        const departamentoContainer = document.getElementById(
+            "departamentos-container"
+        );
         const row = document.createElement("div");
         row.classList.add("row", "row-cols-1", "row-cols-md-5", "g-4"); // Define el número de columnas
 
@@ -29,11 +31,23 @@ async function obtenerDepartamentos() {
             col.classList.add("col");
 
             const card = document.createElement("div");
-            card.classList.add("card", "h-100","w-100", "border", "border-dark", "border-2"); // Borde negro de 2px
+            card.classList.add(
+                "card",
+                "h-100",
+                "w-100",
+                "border",
+                "border-dark",
+                "border-2"
+            ); // Borde negro de 2px
             // Añade clases de borde a tu elección, como 'border', 'border-dark', 'border-2'
 
             const cardBody = document.createElement("div");
-            cardBody.classList.add("card-body", "d-flex", "flex-column", "align-items-center");
+            cardBody.classList.add(
+                "card-body",
+                "d-flex",
+                "flex-column",
+                "align-items-center"
+            );
 
             const cardTitle = document.createElement("h5");
             cardTitle.classList.add("card-title", "text-center", "mb-4"); // Ajusta el margen del título
@@ -63,20 +77,16 @@ async function obtenerDepartamentos() {
 }
 
 
+const logoutButton = document.getElementById("logout");
 
-
-const horarioButton = document.getElementById("horario");
-console.log(horario)
 // Agregar un evento de clic al botón
-horarioButton.addEventListener("click", function () {
+logoutButton.addEventListener("click", function () {
+    // Eliminar datos de sesión (por ejemplo, eliminar un token almacenado en sessionStoragre)
+    sessionStorage.removeItem("token"); // Cambia 'token' por el nombre de tu clave de sesión
+
     // Redireccionar a la página de inicio de sesión
-    window.location.href = "/formulario"; // Cambia '/login' por la URL de tu página de inicio de sesión
+    window.location.href = "/index"; // Cambia '/login' por la URL de tu página de inicio de sesión
 });
-
-
-
-
-
 
 
 
@@ -85,7 +95,7 @@ console.log();
 // Agregar un evento de clic al botón
 aulasButton.addEventListener("click", function () {
     // Redireccionar a la página de inicio de sesión
-    window.location.href = "/aulas"; 
+    window.location.href = "/aulas"; // Cambia '/login' por la URL de tu página de inicio de sesión
 });
 
 document.addEventListener("DOMContentLoaded", obtenerDepartamentos);
