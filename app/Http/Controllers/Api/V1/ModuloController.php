@@ -45,13 +45,13 @@ class ModuloController extends Controller
     {
         $validator = Validator::make($request->all(), [
             // Definición de reglas de validación para los campos que se pueden actualizar
-            'codigo' => 'required|string',
-            'nombre' => 'required|string',
-            'horas_semanales' => 'required|integer',
-            'horas_totales' => 'required|integer',
-            'user_id' => 'required|integer',
-            'especialidad_id' => 'required|integer',
-            'curso_id' => 'required|integer',
+            'codigo' => 'string',
+            'nombre' => 'string',
+            'horas_semanales' => 'integer',
+            'horas_totales' => 'integer',
+            'user_id' => 'integer',
+            'especialidad_id' => 'integer',
+            'curso_id' => 'integer',
         ]);
 
         if ($validator->fails()) {
