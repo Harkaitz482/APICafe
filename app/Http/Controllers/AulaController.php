@@ -69,4 +69,11 @@ class AulaController extends Controller
 
         return response()->json(['message' => 'Aula eliminada con éxito']);
     }
+
+    public function todos(Aula $aulas){
+        $aulas = Aula::all();
+
+        return response()->json($aulas);
+
+    }
 }

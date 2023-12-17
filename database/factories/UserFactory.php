@@ -24,7 +24,7 @@ class UserFactory extends Factory
             'name' => $this->faker->name,
             'email' => $this->faker->unique()->safeEmail,
             'email_verified_at' => now(),
-            'password' => bcrypt('password'), // You might want to use a more secure method to generate passwords
+            'password' => bcrypt('password'), 
             'remember_token' => Str::random(10),
             'tipoUsuario' => $this->faker->randomElement(['Jefe de estudios', 'Profesor','Jefe de departamento']),
             'departamento_id' => \App\Models\Departamento::factory(),

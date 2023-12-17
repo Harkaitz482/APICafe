@@ -32,6 +32,9 @@ Route::get('/JefeEstudios', function () {
 Route::get('/JefeDepart', function () {
     return view('jefeDeparta');
 });
+Route::get('/aulas', function () {
+    return view('aulasJefatura');
+});
 
 
 

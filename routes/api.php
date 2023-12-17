@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\V1\ModuloController;
+use App\Http\Controllers\AulaController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\LoginRegisterController;
@@ -53,6 +54,11 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::get('/modulos/users/{userid}', [ModuloController::class, 'modulosPorUsuario']);
         Route::get('/departamentos', [DepartamentoController::class, 'todos']);
         Route::get('/modulos/aula/{aulaId}', [ModuloController::class, 'mostrarDatosAula']);
+        Route::get('/users/{departamento_id}', [LoginRegisterController::class, 'obtenerUsuariosPorDepartamento']);
+        Route::get('/aulas', [AulaController::class, 'todos']);
+        Route::post('/users/update/{user}', [LoginRegisterController::class, 'update']);
+
+
 
 
 

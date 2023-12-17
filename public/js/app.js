@@ -16,6 +16,8 @@ document.addEventListener("DOMContentLoaded", function () {
             }
 
             enviarCambios();
+            cambiosUser();
+
         });
 
         horasTotalesElement.textContent = horasTotales;
@@ -608,6 +610,65 @@ function obtenerUserID() {
             return null; // Devolver null si no se encuentra el token
         }
 
-        
+
+    }
+
+
+    // Obtener referencia al botón con ID "informacion"
+    // Obtener referencia al botón con ID "informacion"
+
+    // Obtener el botón de información
+    const botonInformacion = document.getElementById('botonInformacion');
+
+    // Agregar un evento de clic al botón para abrir el modal
+    botonInformacion.addEventListener('click', function() {
+        // Utilizar Bootstrap para mostrar el modal
+        var modal = new bootstrap.Modal(document.getElementById('modalInformacion'));
+        modal.show();
+    });
+
+
+
+
+
+    function cambiosUser() {
+
+
+
+        // Obtiene el ID del usuario y las nuevas horas totales
+        const userID = obtenerUserID(); // Asegúrate de tener una función que devuelva el ID del usuario
+        const nuevasHorasTotales = document.getElementById("horastotales"); // El valor que has calculado previamente
+        // Construye el objeto con los datos a enviar
+        const datosUsuario = {
+            horas_totales: nuevasHorasTotales
+            // Puedes agregar más campos si es necesario
+        };
+
+        // URL de la API para actualizar los datos del usuario (reemplaza con tu endpoint correcto)
+        const urlActualizarUsuario = `https://prueba-i03j.onrender.com/api/users/update/${userID}`;
+
+        // Realiza la solicitud POST para actualizar los datos del usuario
+        fetch(urlActualizarUsuario, {
+            method: 'POST',
+            headers: {
+                Authorization: `Bearer ${token}`,
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(datosUsuario) // Convierte el objeto a formato JSON
+        })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Error al actualizar los datos');
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log('Datos actualizados:', data);
+                // Realiza acciones adicionales si es necesario después de la actualización
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+
     }
 }

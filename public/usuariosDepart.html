@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Usuarios por Módulo</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap/dist/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <header
+            class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-4 mb-54 border-bottom"
+        >
+            <div class="col-md-1 mb-2 mb-md-0">
+                <a
+                    href="/formulario"
+                    class="d-inline-flex link-body-emphasis text-decoration-none"
+                >
+                    <img
+                        src="./file/logo/cropped-logo_oficial_transparente.png"
+                        class="bi"
+                        width="70"
+                        height="60"
+                        aria-label="Logo majada"
+                        alt=""
+                    />
+                </a>
+            </div>
+            <h1 id="saludo" class="saludo me-5"></h1>
+            <div id="botonesHeader" class="col-0 text-center">
+                <button
+                    id="logout"
+                    type="button"
+                    class="btn btn-outline-danger"
+                >
+                    Logout
+                </button>
+                <button
+                id="gestionar"
+                type="button"
+                class="btn btn-outline-success"
+            >
+                Gestionar
+            </button>
+
+
+
+
+            </div>
+        </header>
+    <div class="container mt-4">
+        <div class="table-responsive">
+            <table class="table table-bordered rounded table-hover">
+                <thead class="table-dark">
+                    <tr>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Horas Totales</th>
+                        <th scope="col">Modulos</th>
+                        <th scope="col">Carga horaria</th>
+
+                        <!-- Agrega aquí más columnas según la información que desees mostrar -->
+                    </tr>
+                </thead>
+                <tbody id="usuarios-table-body">
+                    
+                    <!-- Aquí se insertarán las filas con los datos de los usuarios -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script type="module" src="./js/usuarioDepart.js"></script>
+</body>
+</html>
+
+

@@ -7,17 +7,8 @@
             rel="stylesheet"
             href="https://cdn.jsdelivr.net/npm/bootstrap/dist/css/bootstrap.min.css"
         />
-        <link rel="stylesheet" href="./css/app.css" />
+        <link rel="stylesheet" href="css/app.css" />
         <title>Formulario</title>
-
-        <style>
-            /* Estilo para el contenedor de las tarjetas */
-            .card-container .card {
-                width: calc(20% - 20px); /* Ancho del 20% para ajustar 5 tarjetas por fila con un pequeño espacio entre ellas */
-                margin: 10px;
-                height: 0%; /* Espacio entre las tarjetas */
-            }
-        </style>
     </head>
 
     <body>
@@ -41,7 +32,7 @@
                             />
                         </a>
                     </div>
-                    <h1 id="saludo" class="saludo me-5">Departamentos</h1>
+                    <h1 id="saludo" class="saludo me-5"></h1>
                     <div id="botonesHeader" class="col-0 text-center">
                         <button
                             id="logout"
@@ -50,40 +41,52 @@
                         >
                             Logout
                         </button>
-                        <button
-    id="horario"
-    type="button"
-    class="btn btn-outline-success"
->
-                        horario
-                    </button>
 
                         <button
-                        id="aulas"
+                        id="departamento"
                         type="button"
                         class="btn btn-outline-primary"
                     >
-                        Aulas
+                        Departamentos
                     </button>
                     </div>
-
-
-                    
                 </header>
 
-                <div id="informacion"> </div>
+                <div id="informacion"></div>
 
             </div>
             <div class="container">
 
-                <div id="departamentos-container" class="card-container d-flex flex-wrap justify-content-center d-inline"></div>
-                <div id="modulos-container"></div>
-                
+                <div id="aulas-container">
+
+                    <div class="modal fade" id="modalCursos" tabindex="-1" role="dialog" aria-labelledby="modalTitle" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="modalTitle">Curso Asociado al Aula</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <ul class="list-group" id="cursoDetails">
+                                        <!-- Aquí se insertarán los detalles del curso -->
+                                    </ul>
+                                    <p class="no-course" style="display: none;">No hay curso asociado a este aula.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    
+
+
+                </div>
+
+
 
 
 
         </div>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap/dist/js/bootstrap.min.js"></script>
-        <script  src="js/jefedeEstudio.js"></script>
+        <script  src="js/aulasJefatura.js"></script>
     </body>
 </html>

@@ -1,154 +1,206 @@
+html {
+    position: relative;
+    min-height: 100%;
+}
+body {
+    margin-bottom: 60px; /* Altura del footer */
+}
 
 
-  
-  .divider:after,
-  .divider:before {
-  content: "";
-  flex: 1;
-  height: 1px;
-  background: #eee;
-  }
-  .h-custom {
-  height: calc(100% - 73px);
-  }
-  @media (max-width: 450px) {
-  .h-custom {
-  height: 100%;
-  }
-  }
-
-  .icono-majada img{
-  margin-left: 5%;
-  max-width: 90%;
-  height: 100%;
-  }
 
 
-  .boton-login{
-    background-color: #52B2CF;
-  }
+.divider:after,
+.divider:before {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: #eee;
+}
+.h-custom {
+    height: calc(100% - 73px);
+}
+@media (max-width: 450px) {
+    .h-custom {
+        height: 100%;
+    }
+}
 
-  /* Navigation Bar */
-  .navbar{
+.icono-majada img {
+    margin-left: 5%;
+    max-width: 90%;
+    height: 100%;
+}
+
+.boton-login {
+    background-color: #52b2cf;
+}
+
+/* Navigation Bar */
+.navbar {
     padding: 20px 10px 20px 0px;
     background-color: #28a7e9;
     transition: all ease 0.4s;
-  }
-  .navbar-brand{
+}
+.navbar-brand {
     font-size: 22px;
     color: white !important;
-  }
-  .navbar .navbar-nav li a{
+}
+.navbar .navbar-nav li a {
     font-size: 16px;
     color: white;
-  }
+}
 
-  /* Animation */
-  .animate{
+/* Animation */
+.animate {
     padding: 0px 10px 0px 0px;
     transition: all ease 0.4s;
-  }
+}
 
-  /* Jumbotron */
-  .jumbotron{
+/* Jumbotron */
+.jumbotron {
     margin-top: 110px;
-  }
+}
 
-  #form-img{ 
-    height:"70px"
-  }
+#form-img {
+    height: "70px";
+}
 
-  .majada-b-blanco{
+.majada-b-blanco {
     background-color: #f6f6f6;
-  }
-  .majada-t-blanco{
+}
+.majada-t-blanco {
     color: #f6f6f6;
-  }
-  .majada-b-azul-claro{
+}
+.majada-b-azul-claro {
     background-color: #10abc7;
-  }
-  .majada-t-azul-claro{
+}
+.majada-t-azul-claro {
     color: #10abc7;
-  }
-  .majada-t-azul-oscuro{
+}
+.majada-t-azul-oscuro {
     color: #116bb8;
-  }
-  .majada-b-azul-oscuro{
+}
+.majada-b-azul-oscuro {
     background-color: #116bb8;
-  }
-  .majada-t-naranja{
+}
+.majada-t-naranja {
     color: #ea5d16;
-  }
-  .majada-b-naranja{
+}
+.majada-b-naranja {
     background-color: #ea5d16;
-  }
-  .majada-t-rojo{
+}
+.majada-t-rojo {
     color: #be1816;
-  }
-  .majada-b-rojo{
+}
+.majada-b-rojo {
     background-color: #28a7e9;
-  }
-  .majada-t-amarillo{
+}
+.majada-t-amarillo {
     color: #f9c114;
-  }
-  .majada-b-amarillo{
+}
+.majada-b-amarillo {
     background-color: #f9c114;
-  }
-  .tabla-width-5{
-    width:5%;
-  }
-  .tabla-width-15{
-    width:15%;
-  }
+}
+.tabla-width-5 {
+    width: 5%;
+}
+.tabla-width-15 {
+    width: 15%;
+}
 
-  .table-bordered td {
+.table-bordered td {
     border: 1px solid #dee2e6;
-  }
-  .modulo-carga-separator {
+}
+.modulo-carga-separator {
     border-top: 1px solid #dee2e6;
-  }
+}
 
-
-  #tablaUsuario{
-
-
+#tablaUsuario {
     border: black solid 1px;
-  }
+}
 
-
-  /* Estilos del modal */
+/* Estilos del modal */
 .modal {
-  display: none; /* Ocultar por defecto */
-  position: fixed;  
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  overflow: auto;
-  background-color: rgba(0, 0, 0, 0.4);
+    display: none; /* Ocultar por defecto */
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
 }
 
 .modal-content {
-  margin: 20% auto; /* Ajuste en la distancia desde la parte superior */
-  padding: 15px;
-  border: 1px solid #888;
-  width: 60%; /* Hacerlo un poco más ancho */
-  max-width: 400px; /* Establecer un ancho máximo */
+    margin: 20% auto; /* Ajuste en la distancia desde la parte superior */
+    padding: 15px;
+    border: 1px solid #888;
+    width: 60%; /* Hacerlo un poco más ancho */
+    max-width: 400px; /* Establecer un ancho máximo */
 }
 
 .close {
-  color: red; /* Cambiar el color del texto a rojo */
-  position: absolute;
-  top: 0px; /* Ajustar para posicionar más arriba */
-  right: 10px;
-  font-size: 24px;
-  font-weight: bold;
-  cursor: pointer;
+    color: red; /* Cambiar el color del texto a rojo */
+    position: absolute;
+    top: 0px; /* Ajustar para posicionar más arriba */
+    right: 10px;
+    font-size: 24px;
+    font-weight: bold;
+    cursor: pointer;
 }
 
 .close:hover,
 .close:focus {
-  color: darkred; /* Cambiar el color al pasar el cursor */
-  text-decoration: none;
+    color: darkred; /* Cambiar el color al pasar el cursor */
+    text-decoration: none;
 }
 
+.botonInformacion {
+    position: fixed;
+    bottom: 20px; /* Ajusta la distancia desde abajo según sea necesario */
+    right: 20px; /* Ajusta la distancia desde la derecha según sea necesario */
+    background-color: #007bff; /* Cambia el color de fondo según tu preferencia */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    z-index: 999; /* Asegúrate de que esté encima del resto del contenido */
+}
+
+/* Cambia el estilo cuando el cursor está sobre el botón */
+.botonInformacion:hover {
+    background-color: #0056b3; /* Cambia el color de fondo al pasar el cursor */
+}
+
+
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 60px; /* Altura del footer */
+    background-color: #f5f5f5; /* Color de fondo del footer */
+}
+
+
+#informacionProfe{
+    margin: 0%;
+    padding: 5%;
+    height: 15%;
+    width: 15%;
+}
+
+
+#HorasTotal{
+    margin-bottom: 2%;
+    padding: 5%;
+    height: 15%;
+    width: 20%;
+}
+
+
+/* Agrega una regla CSS para cambiar el color del texto a rojo */
+.rojo {
+    color: red;
+}
