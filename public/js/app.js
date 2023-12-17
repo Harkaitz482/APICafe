@@ -631,44 +631,46 @@ function obtenerUserID() {
 
 
 
-    function cambiosUser() {
+    
+}
+
+function cambiosUser() {
 
 
 
-        // Obtiene el ID del usuario y las nuevas horas totales
-        const userID = obtenerUserID(); // Asegúrate de tener una función que devuelva el ID del usuario
-        const nuevasHorasTotales = document.getElementById("horastotales"); // El valor que has calculado previamente
-        // Construye el objeto con los datos a enviar
-        const datosUsuario = {
-            horas_totales: nuevasHorasTotales
-            // Puedes agregar más campos si es necesario
-        };
+    // Obtiene el ID del usuario y las nuevas horas totales
+    const userID = obtenerUserID(); // Asegúrate de tener una función que devuelva el ID del usuario
+    const nuevasHorasTotales = document.getElementById("horastotales"); // El valor que has calculado previamente
+    // Construye el objeto con los datos a enviar
+    const datosUsuario = {
+        horas_totales: nuevasHorasTotales
+        // Puedes agregar más campos si es necesario
+    };
 
-        // URL de la API para actualizar los datos del usuario (reemplaza con tu endpoint correcto)
-        const urlActualizarUsuario = `https://prueba-i03j.onrender.com/api/users/update/${userID}`;
+    // URL de la API para actualizar los datos del usuario (reemplaza con tu endpoint correcto)
+    const urlActualizarUsuario = `https://prueba-i03j.onrender.com/api/users/update/${userID}`;
 
-        // Realiza la solicitud POST para actualizar los datos del usuario
-        fetch(urlActualizarUsuario, {
-            method: 'POST',
-            headers: {
-                Authorization: `Bearer ${token}`,
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify(datosUsuario) // Convierte el objeto a formato JSON
+    // Realiza la solicitud POST para actualizar los datos del usuario
+    fetch(urlActualizarUsuario, {
+        method: 'POST',
+        headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(datosUsuario) // Convierte el objeto a formato JSON
+    })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Error al actualizar los datos');
+            }
+            return response.json();
         })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Error al actualizar los datos');
-                }
-                return response.json();
-            })
-            .then(data => {
-                console.log('Datos actualizados:', data);
-                // Realiza acciones adicionales si es necesario después de la actualización
-            })
-            .catch(error => {
-                console.error('Error:', error);
-            });
+        .then(data => {
+            console.log('Datos actualizados:', data);
+            // Realiza acciones adicionales si es necesario después de la actualización
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
 
-    }
 }
