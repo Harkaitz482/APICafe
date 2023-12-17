@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Usuarios por Módulo</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="./css/app.css" />
 </head>
 <body>
     <div class="container">
@@ -71,7 +70,7 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script  src="js/usuarioDepart.js"></script>
+    <script src="js/usuarioDepart.js"></script>
 </body>
 </html>
 
