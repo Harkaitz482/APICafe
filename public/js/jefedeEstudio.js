@@ -88,6 +88,16 @@ logoutButton.addEventListener("click", function () {
     window.location.href = "/index"; // Cambia '/login' por la URL de tu página de inicio de sesión
 });
 
+const horariotButton = document.getElementById("horario");
+
+// Agregar un evento de clic al botón
+horariotButton.addEventListener("click", function () {
+    // Eliminar datos de sesión (por ejemplo, eliminar un token almacenado en sessionStoragre)
+    sessionStorage.removeItem("token"); // Cambia 'token' por el nombre de tu clave de sesión
+
+    // Redireccionar a la página de inicio de sesión
+    window.location.href = "/formulario"; // Cambia '/login' por la URL de tu página de inicio de sesión
+});
 
 
 const aulasButton = document.getElementById("aulas");

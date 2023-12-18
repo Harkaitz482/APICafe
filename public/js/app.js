@@ -3,6 +3,8 @@ let moduloIdSeleccionado;
 document.addEventListener("DOMContentLoaded", function () {
     const calcularBtn = document.getElementById("calcular");
     const horasTotalesElement = document.getElementById("horastotales");
+    const botonInformacion = document.getElementById('botonInformacion');
+
 
     calcularBtn.addEventListener("click", function () {
         const tablaInputs = document.querySelectorAll(
@@ -618,14 +620,18 @@ function obtenerUserID() {
     // Obtener referencia al botón con ID "informacion"
 
     // Obtener el botón de informaciónconst botonInformacion = document.getElementById('botonInformacion');
-
+    
     // Agregar un evento de clic al botón para abrir el modal
     botonInformacion.addEventListener('click', function () {
         // Utilizar Bootstrap para mostrar el modal
-        var modal = new bootstrap.Modal(document.getElementById('modalInformacion'));
+        
+        const modal = new bootstrap.Modal(document.getElementById('modalInformacion'));
+        console.log("me cago en dios ");
         modal.show();
     });
 
+  
+    
 
 
 
