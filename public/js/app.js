@@ -3,8 +3,6 @@ let moduloIdSeleccionado;
 document.addEventListener("DOMContentLoaded", function () {
     const calcularBtn = document.getElementById("calcular");
     const horasTotalesElement = document.getElementById("horastotales");
-    const botonInformacion = document.getElementById('botonInformacion');
-
 
     calcularBtn.addEventListener("click", function () {
         const tablaInputs = document.querySelectorAll(
@@ -19,7 +17,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
             enviarCambios();
             cambiosUser();
-
         });
 
         horasTotalesElement.textContent = horasTotales;
@@ -252,7 +249,8 @@ selectModulo.addEventListener("change", function (event) {
 function enviarCambios() {
     const userId = obtenerUserID(); // Asegúrate de tener una función que devuelva el user_id
     const cargaHorariaElement = document.getElementById("resultadosElement");
-    const cargaHoraria = cargaHorariaElement.options[cargaHorariaElement.selectedIndex].text; // Obtener el texto de la opción seleccionada
+    const cargaHoraria =
+        cargaHorariaElement.options[cargaHorariaElement.selectedIndex].text; // Obtener el texto de la opción seleccionada
     const dataToUpdate = {
         user_id: userId,
         CargaHoraria: cargaHoraria,
@@ -611,34 +609,16 @@ function obtenerUserID() {
         } else {
             return null; // Devolver null si no se encuentra el token
         }
-
-
     }
-
 
     // Obtener referencia al botón con ID "informacion"
     // Obtener referencia al botón con ID "informacion"
 
     // Obtener el botón de informaciónconst botonInformacion = document.getElementById('botonInformacion');
+
+
+
     
-    // Agregar un evento de clic al botón para abrir el modal
-    botonInformacion.addEventListener('click', function () {
-        // Utilizar Bootstrap para mostrar el modal
-        
-        const modal = new bootstrap.Modal(document.getElementById('modalInformacion'));
-        console.log("me cago en dios ");
-        modal.show();
-    });
-
-  
-    
-
-
-
-
-
-
-}
 function cambiosUser() {
     // Obtiene el ID del usuario y las nuevas horas totales
     const userID = obtenerUserID(); // Asegúrate de tener una función que devuelva el ID del usuario
@@ -655,24 +635,33 @@ function cambiosUser() {
 
     // Realiza la solicitud POST para actualizar los datos del usuario
     fetch(urlActualizarUsuario, {
-        method: 'POST',
+        method: "POST",
         headers: {
             Authorization: `Bearer ${token}`, // Asegúrate de tener la variable 'token' definida
             "Content-Type": "application/json",
         },
         body: JSON.stringify(datosUsuario), // Convierte el objeto a formato JSON
     })
-        .then(response => {
+        .then((response) => {
             if (!response.ok) {
-                throw new Error('Error al actualizar los datos');
+                throw new Error("Error al actualizar los datos");
             }
             return response.json();
         })
-        .then(data => {
-            console.log('Datos actualizados:', data);
+        .then((data) => {
+            console.log("Datos actualizados:", data);
             // Realiza acciones adicionales si es necesario después de la actualización
         })
-        .catch(error => {
-            console.error('Error:', error);
+        .catch((error) => {
+            console.error("Error:", error);
         });
-}
+}}
+
+
+
+const botonInformacion = document.getElementById("botonInformacion");
+
+botonInformacion.addEventListener("click", function () {
+    const modal = new bootstrap.Modal(document.getElementById("modalInformacion"));
+    modal.show();
+})
