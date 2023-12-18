@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", function () {
             }
 
             enviarCambios();
-            cambiosUser();
+            
         });
 
         horasTotalesElement.textContent = horasTotales;
