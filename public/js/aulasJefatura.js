@@ -245,7 +245,7 @@ console.log();
 // Agregar un evento de clic al botón
 departamentoButton.addEventListener("click", function () {
     // Redireccionar a la página de inicio de sesión
-    window.location.href = "jefeDeEstudio.html"; // Cambia '/login' por la URL de tu página de inicio de sesión
+    window.location.href = "/jefeDeEstudio"; // Cambia '/login' por la URL de tu página de inicio de sesión
 });
 
 const logoutButton = document.getElementById("logout");
@@ -256,5 +256,5 @@ logoutButton.addEventListener("click", function () {
     sessionStorage.removeItem("token"); // Cambia 'token' por el nombre de tu clave de sesión
 
     // Redireccionar a la página de inicio de sesión
-    window.location.href = "index.html"; // Cambia '/login' por la URL de tu página de inicio de sesión
+    window.location.href = "/index"; // Cambia '/login' por la URL de tu página de inicio de sesión
 });

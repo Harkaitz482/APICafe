@@ -144,7 +144,7 @@ logoutButton.addEventListener("click", function () {
     sessionStorage.removeItem("token"); // Cambia 'token' por el nombre de tu clave de sesión
 
     // Redireccionar a la página de inicio de sesión
-    window.location.href = "/"; // Cambia '/login' por la URL de tu página de inicio de sesión
+    window.location.href = "/index"; // Cambia '/login' por la URL de tu página de inicio de sesión
 });
 // Obtener referencia al select y al contenedor de horas
 
